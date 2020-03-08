@@ -4,12 +4,15 @@
 
 .App-logo-wrapper {
   position: relative;
-  height: 40vmin;
+  width: 500px;
+  height: 80vmin;
   border: 1px solid white;
+  background-image: url('./court.svg');
+  background-size: cover;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 100%;
 }
 
 .App-header {
