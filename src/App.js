@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Checkbox, CheckboxGroup, CSSReset, theme, ThemeProvider } from '@chakra-ui/core';
 import ShotChart from './components/ShotsChart';
 import ShotTypeSelector from './components/ShotTypeSelector';
 import { SHOT_TYPE } from './constants/base';
@@ -46,6 +47,10 @@ function App() {
     }
   }
 
+  const handleCheckboxChange = event => {
+    console.log(event);
+  }
+
   React.useEffect(() => {
     setCourtPositions(prevState => {
       return {
@@ -56,22 +61,35 @@ function App() {
   }, [court, shotPositions, setCourtPositions]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <ShotTypeSelector onClick={handleSwitchShotType} />
-        <ShotChart
-          shotType={shotType}
-          position={position}
-          shotPositions={shotPositions}
-          onClick={handlePositionClick}
-          onMouseMove={handleMouseMove}
-        />
-        <p>{`X: ${position.x} Y: ${position.y}`}</p>
-        <button value={1} onClick={handleChangeCourt}>1</button>
-        <button value={2} onClick={handleChangeCourt}>2</button>
-        <button value="total" onClick={handleChangeCourt}>total</button>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CSSReset />
+      <div className="App">
+        <header className="App-header">
+          <ShotTypeSelector onClick={handleSwitchShotType} />
+          <ShotChart
+            shotType={shotType}
+            position={position}
+            shotPositions={shotPositions}
+            onClick={handlePositionClick}
+            onMouseMove={handleMouseMove}
+          />
+          <p>{`X: ${position.x} Y: ${position.y}`}</p>
+          <CheckboxGroup
+            isInline
+            spacing={8}
+            variantColor="blue"
+            defaultValue={'1'}
+            onChange={handleCheckboxChange}
+          >
+            <Checkbox value={'1'}>1</Checkbox>
+            <Checkbox value={'2'}>2</Checkbox>
+          </CheckboxGroup>
+          <button value={1} onClick={handleChangeCourt}>1</button>
+          <button value={2} onClick={handleChangeCourt}>2</button>
+          <button value="total" onClick={handleChangeCourt}>total</button>
+        </header>
+      </div>
+    </ThemeProvider>
   );
 }
 
