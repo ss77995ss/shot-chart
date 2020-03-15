@@ -1,27 +1,16 @@
 import React, { useState } from 'react';
-import { Checkbox, CheckboxGroup, CSSReset, theme, ThemeProvider } from '@chakra-ui/core';
+import { Box,  CSSReset, theme, ThemeProvider, Flex } from '@chakra-ui/core';
+import { CourtProvider } from './contexts/court';
+import { CourtPositionsProvider } from './contexts/courtPositions';
 import ShotChart from './components/ShotsChart';
 import ShotTypeSelector from './components/ShotTypeSelector';
+import CourtSwitcher from './components/CourtSwitcher';
 import { SHOT_TYPE } from './constants/base';
 import './App.css';
 
 function App() {
   const [shotType, setShotType] = useState(SHOT_TYPE.MADE);
-  const [shotPositions, setShotPositions] = useState([]);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [court, setCourt] = useState(1);
-  const [courtPositions, setCourtPositions] = useState({
-    1: [],
-    2: [],
-  });
-
-  const handlePositionClick = () => {
-    console.log('Set Position!');
-    setShotPositions(prevState => prevState.concat({
-      type: shotType,
-      position,
-    }));
-  };
 
   const handleMouseMove = event => {
     event.preventDefault();
@@ -30,66 +19,32 @@ function App() {
 
   const handleSwitchShotType = event => {
     console.log(`Change shot type! ${event.target.value}`);
-    if (event.target.value === SHOT_TYPE.UNDO) setShotPositions(prevState => prevState.slice(0, - 1));
-    else setShotType(event.target.value);
+    setShotType(event.target.value);
   };
 
-  const handleChangeCourt = event => {
-    const value = event.target.value;
-    if (value === 'total') {
-      const totalPositions = Object.values(courtPositions).flat();
-      setShotPositions(totalPositions);
-      setCourt('total');
-    }
-    else {
-      setCourt(value);
-      setShotPositions(courtPositions[value])
-    }
-  }
-
-  const handleCheckboxChange = event => {
-    console.log(event);
-  }
-
-  React.useEffect(() => {
-    setCourtPositions(prevState => {
-      return {
-        ...prevState,
-        [court]: shotPositions,
-      }
-    })
-  }, [court, shotPositions, setCourtPositions]);
-
   return (
-    <ThemeProvider theme={theme}>
-      <CSSReset />
-      <div className="App">
-        <header className="App-header">
-          <ShotTypeSelector onClick={handleSwitchShotType} />
-          <ShotChart
-            shotType={shotType}
-            position={position}
-            shotPositions={shotPositions}
-            onClick={handlePositionClick}
-            onMouseMove={handleMouseMove}
-          />
-          <p>{`X: ${position.x} Y: ${position.y}`}</p>
-          <CheckboxGroup
-            isInline
-            spacing={8}
-            variantColor="blue"
-            defaultValue={'1'}
-            onChange={handleCheckboxChange}
-          >
-            <Checkbox value={'1'}>1</Checkbox>
-            <Checkbox value={'2'}>2</Checkbox>
-          </CheckboxGroup>
-          <button value={1} onClick={handleChangeCourt}>1</button>
-          <button value={2} onClick={handleChangeCourt}>2</button>
-          <button value="total" onClick={handleChangeCourt}>total</button>
-        </header>
-      </div>
-    </ThemeProvider>
+    <CourtProvider>
+    <CourtPositionsProvider>
+      <ThemeProvider theme={theme}>
+        <CSSReset />
+        <div className="App">
+          <Flex h="100vh" align="center" justify="center" bg="#282c34" color="white" textAlign="center">
+            <Box p={4}>
+              <ShotTypeSelector onClick={handleSwitchShotType} />
+              <ShotChart
+                shotType={shotType}
+                position={position}
+                onMouseMove={handleMouseMove}
+              />
+            </Box>
+            <Box>
+              <CourtSwitcher />
+            </Box>
+          </Flex>
+        </div>
+      </ThemeProvider>
+    </CourtPositionsProvider>
+    </CourtProvider>
   );
 }
 

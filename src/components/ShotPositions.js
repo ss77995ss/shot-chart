@@ -21,8 +21,8 @@ function ShotPositions({ shotPositions }) {
 
 ShotPositions.propTypes = {
   shotPositions: PropTypes.arrayOf(PropTypes.shape({
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
+    x: PropTypes.number,
+    y: PropTypes.number,
   })).isRequired,
 }
 
