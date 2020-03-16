@@ -18,7 +18,9 @@ function courtPositionsReducer(state, action) {
       };
     }
     case 'DELETE_COURT': {
-      return omit(action.id, state);
+      return {
+        ...omit(action.id, state),
+      };
     }
     case 'EDIT_COURT_NAME': {
       state[action.id].name = action.court;
