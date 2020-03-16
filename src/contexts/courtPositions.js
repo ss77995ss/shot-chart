@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { omit } from 'ramda';
 
 const CourtPositionsStateContext = React.createContext();
 const CourtPositionsDispatchContext = React.createContext();
@@ -17,8 +18,7 @@ function courtPositionsReducer(state, action) {
       };
     }
     case 'DELETE_COURT': {
-      delete state[action.id];
-      return state;
+      return omit(action.id, state);
     }
     case 'EDIT_COURT_NAME': {
       state[action.id].name = action.court;

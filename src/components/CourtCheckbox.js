@@ -35,6 +35,12 @@ function CourtCheckbox({ id, name }) {
       setStatus(status === 'CLOSE' ? 'OPEN' : 'CLOSE');
     }
   }
+  const handleDelete = () => {
+    courtPositionsDispatch({
+      type: 'DELETE_COURT',
+      id,
+    })
+  }
 
   const variant = status === 'CLOSE' ? 'unstyled' : 'flushed';
   const isDisabled = status === 'CLOSE';
@@ -49,7 +55,7 @@ function CourtCheckbox({ id, name }) {
         />
         <ButtonGroup>
           <Button variant="solid" variantColor="blue" onClick={handleEdit}>Edit</Button>
-          <Button variant="solid" variantColor="blue">Delete</Button>
+          <Button variant="solid" variantColor="blue" onClick={handleDelete}>Delete</Button>
         </ButtonGroup>
       </Flex>
   )
