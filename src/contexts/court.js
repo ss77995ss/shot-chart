@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { reject } from 'ramda';
 
 const CourtStateContext = React.createContext();
 const CourtDispatchContext = React.createContext();
@@ -8,8 +9,23 @@ function courtReducer(state, action) {
   switch (action.type) {
     case 'SELECT_COURTS': {
       return {
+        ...state,
         currentCourt: action.courts.slice(-1)[0],
         selectedCourts: action.courts,
+      }
+    }
+    case 'ADD_COURT': {
+      return {
+        ...state,
+        newCourtId: state.newCourtId + 1,
+      };
+    }
+    case 'DELETE_COURT': {
+      const remainCourts = reject((court) => court === action.id, state.selectedCourts);
+      return {
+        ...state,
+        currentCourt: remainCourts.slice(-1)[0],
+        selectedCourts: remainCourts,
       }
     }
     default: {
@@ -20,6 +36,7 @@ function courtReducer(state, action) {
 
 function CourtProvider({ children }) {
   const [state, dispatch] = React.useReducer(courtReducer, {
+    newCourtId: 3,
     currentCourt: '1',
     selectedCourts: ['1'],
   })

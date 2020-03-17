@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button, Checkbox, CheckboxGroup } from '@chakra-ui/core';
 import { useCourtState, useCourtDispatch } from '../contexts/court';
-import { useCourtPositionsState } from '../contexts/courtPositions';
+import { useCourtPositionsState, useCourtPositionsDispatch} from '../contexts/courtPositions';
 import CourtCheckbox from './CourtCheckbox';
 
 const renderCheckboxes = courtPositions => {
   return (
     Object.values(courtPositions).map((court, index) => (
-      <Checkbox value={court.id}>
+      <Checkbox key={`checkbox-${court.id}`} value={court.id}>
         <CourtCheckbox id={court.id} name={court.name} />
       </Checkbox>
     ))
@@ -15,23 +15,38 @@ const renderCheckboxes = courtPositions => {
 };
 
 function CourtSwitcher({ onChange }) {
-  const { currentCourt } = useCourtState();
+  const { newCourtId, currentCourt, selectedCourts } = useCourtState();
   const courtDispatch = useCourtDispatch();
   const courtPositions = useCourtPositionsState();
+  const courtPositionsDispatch = useCourtPositionsDispatch();
+
   const handleCheckboxChange = checkedCourts => {
     courtDispatch({
       type: 'SELECT_COURTS',
       courts: checkedCourts,
     });
   };
+
+  const handleAddCourtButtonClick = () => {
+    courtPositionsDispatch({
+      type: 'ADD_COURT',
+      id: newCourtId.toString(),
+      court: newCourtId.toString(),
+    });
+    courtDispatch({
+      type: 'ADD_COURT',
+    });
+  }
+
   return (
     <CheckboxGroup
       variantColor="blue"
       defaultValue={[currentCourt]}
+      value={selectedCourts}
       onChange={handleCheckboxChange}
     >
       {renderCheckboxes(courtPositions)}
-      <Button leftIcon="add">Add new court</Button>
+      <Button leftIcon="add" onClick={handleAddCourtButtonClick}>Add new court</Button>
     </CheckboxGroup>
   )
 }

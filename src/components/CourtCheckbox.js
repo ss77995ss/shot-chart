@@ -36,10 +36,15 @@ function CourtCheckbox({ id, name }) {
     }
   }
   const handleDelete = () => {
+    console.log(`${id} is been deleted`);
     courtPositionsDispatch({
       type: 'DELETE_COURT',
       id,
-    })
+    });
+    courtDispatch({
+      type: 'DELETE_COURT',
+      id,
+    });
   }
 
   const variant = status === 'CLOSE' ? 'unstyled' : 'flushed';
