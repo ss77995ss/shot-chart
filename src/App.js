@@ -3,6 +3,7 @@ import { Box,  CSSReset, theme, ThemeProvider, Flex } from '@chakra-ui/core';
 import { CourtProvider } from './contexts/court';
 import { CourtPositionsProvider } from './contexts/courtPositions';
 import ShotChart from './components/ShotsChart';
+import ShotList from './components/ShotList';
 import ShotTypeSelector from './components/ShotTypeSelector';
 import CourtSwitcher from './components/CourtSwitcher';
 import { SHOT_TYPE } from './constants/base';
@@ -29,6 +30,7 @@ function App() {
         <CSSReset />
         <div className="App">
           <Flex h="100vh" align="center" justify="center" bg="#282c34" color="white" textAlign="center">
+            <ShotList />
             <Box p={4}>
               <ShotTypeSelector onClick={handleSwitchShotType} />
               <ShotChart

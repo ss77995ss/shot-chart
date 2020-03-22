@@ -10,3 +10,7 @@
   background-image: url('./court.svg');
   background-size: cover;
 }
+
+#court {
+  background-color: black;
+}

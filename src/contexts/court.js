@@ -7,9 +7,16 @@ const CourtDispatchContext = React.createContext();
 
 function courtReducer(state, action) {
   switch (action.type) {
+    case 'SELECT_POSITION': {
+      return {
+        ...state,
+        selectedPosition: action.position,
+      }
+    }
     case 'SELECT_COURTS': {
       return {
         ...state,
+        selectedPosition: null,
         currentCourt: action.courts.slice(-1)[0],
         selectedCourts: action.courts,
       }
@@ -36,6 +43,7 @@ function courtReducer(state, action) {
 
 function CourtProvider({ children }) {
   const [state, dispatch] = React.useReducer(courtReducer, {
+    selectedPosition: null,
     newCourtId: 3,
     currentCourt: '1',
     selectedCourts: ['1'],
