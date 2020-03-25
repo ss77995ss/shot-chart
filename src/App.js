@@ -1,26 +1,15 @@
-import React, { useState } from 'react';
-import { Box,  CSSReset, theme, ThemeProvider, Flex } from '@chakra-ui/core';
+import React from 'react';
+import { CSSReset, theme, ThemeProvider, Box, Button, Flex } from '@chakra-ui/core';
 import { CourtProvider } from './contexts/court';
 import { CourtPositionsProvider } from './contexts/courtPositions';
-import ShotChart from './components/ShotsChart';
-import ShotList from './components/ShotList';
-import ShotTypeSelector from './components/ShotTypeSelector';
-import CourtSwitcher from './components/CourtSwitcher';
-import { SHOT_TYPE } from './constants/base';
+import EditMode from './components/EditMode';
+import ViewMode from './components/ViewMode';
 import './App.css';
 
 function App() {
-  const [shotType, setShotType] = useState(SHOT_TYPE.MADE);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = event => {
-    event.preventDefault();
-    setPosition({ x: event.nativeEvent.offsetX, y: event.nativeEvent.offsetY });
-  };
-
-  const handleSwitchShotType = event => {
-    console.log(`Change shot type! ${event.target.value}`);
-    setShotType(event.target.value);
+  const [mode, setMode] = React.useState('EDIT');
+  const handleSwitchMode = event => {
+    setMode(event.target.value);
   };
 
   return (
@@ -30,18 +19,11 @@ function App() {
         <CSSReset />
         <div className="App">
           <Flex h="100vh" align="center" justify="center" bg="#282c34" color="white" textAlign="center">
-            <ShotList />
-            <Box p={4}>
-              <ShotTypeSelector onClick={handleSwitchShotType} />
-              <ShotChart
-                shotType={shotType}
-                position={position}
-                onMouseMove={handleMouseMove}
-              />
-            </Box>
             <Box>
-              <CourtSwitcher />
+              <Button value="EDIT" onClick={handleSwitchMode}>EDIT</Button>
+              <Button value="VIEW" onClick={handleSwitchMode}>VIEW</Button>
             </Box>
+            { mode === 'EDIT' ? <EditMode /> : <ViewMode /> }
           </Flex>
         </div>
       </ThemeProvider>

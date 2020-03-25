@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Checkbox, CheckboxGroup } from '@chakra-ui/core';
-import { useCourtState, useCourtDispatch } from '../contexts/court';
-import { useCourtPositionsState, useCourtPositionsDispatch} from '../contexts/courtPositions';
+import { useCourtState, useCourtDispatch } from '../../contexts/court';
+import { useCourtPositionsState, useCourtPositionsDispatch} from '../../contexts/courtPositions';
 import CourtCheckbox from './CourtCheckbox';
 
 const renderCheckboxes = courtPositions => {
@@ -14,7 +14,7 @@ const renderCheckboxes = courtPositions => {
   )
 };
 
-function CourtSwitcher({ onChange }) {
+function CourtSwitcher() {
   const { newCourtId, currentCourt, selectedCourts } = useCourtState();
   const courtDispatch = useCourtDispatch();
   const courtPositions = useCourtPositionsState();
