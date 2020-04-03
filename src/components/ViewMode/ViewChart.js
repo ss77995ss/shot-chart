@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@chakra-ui/core';
-import { useCourtState } from '../../contexts/court';
-import { useCourtPositionsState } from '../../contexts/courtPositions';
+import { useCourtState } from '../../hooks/court';
+import { useCourtPositionsState } from '../../hooks/courtPositions';
 import FieldGoal from '../FieldGoal';
 import ShotPositions from '../ShotPositions';
 

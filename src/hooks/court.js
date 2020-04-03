@@ -13,11 +13,17 @@ function courtReducer(state, action) {
         selectedPosition: action.position,
       }
     }
+    case 'SELECT_COURT': {
+      return {
+        ...state,
+        selectedPosition: null,
+        currentCourt: action.court,
+      }
+    }
     case 'SELECT_COURTS': {
       return {
         ...state,
         selectedPosition: null,
-        currentCourt: action.courts.slice(-1)[0],
         selectedCourts: action.courts,
       }
     }

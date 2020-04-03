@@ -6,8 +6,8 @@ import {
   Flex,
   Input,
 } from '@chakra-ui/core';
-import { useCourtDispatch } from '../../contexts/court';
-import { useCourtPositionsDispatch } from '../../contexts/courtPositions';
+import { useCourtDispatch } from '../../hooks/court';
+import { useCourtPositionsDispatch } from '../../hooks/courtPositions';
 
 function CourtCheckbox({ id, name }) {
   const [status, setStatus] = useState('CLOSE');

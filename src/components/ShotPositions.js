@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useCourtState } from '../contexts/court';
+import { useCourtState } from '../hooks/court';
 import { SHOT_TYPE } from '../constants/base';
 
 function ShotPositions({ shotPositions }) {
