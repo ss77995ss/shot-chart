@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { omit, reject } from 'ramda';
+import { lensProp, omit, reject, set } from 'ramda';
 
 const CourtPositionsStateContext = React.createContext();
 const CourtPositionsDispatchContext = React.createContext();
@@ -12,7 +12,7 @@ function courtPositionsReducer(state, action) {
         ...state,
         [action.id]: {
           id: action.id,
-          name: action.court,
+          name: action.id,
           value: [],
         },
       };
@@ -32,8 +32,12 @@ function courtPositionsReducer(state, action) {
       return state;
     }
     case 'EDIT_COURT_NAME': {
-      state[action.id].name = action.court;
-      return state;
+      const newCourt = set(lensProp('name'), action.court, state[action.id]);
+
+      return {
+        ...state,
+        [action.id]: newCourt
+      };
     }
     case 'UPDATE_COURT_POSITIONS': {
       state[action.currentCourt].value = state[action.currentCourt].value.concat(action.positions);

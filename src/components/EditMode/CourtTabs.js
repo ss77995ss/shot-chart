@@ -1,20 +1,34 @@
 import React from 'react';
-import { TabList, Tab } from '@chakra-ui/core';
-import { useCourtPositionsState } from '../../hooks/courtPositions';
+import { Flex, IconButton } from '@chakra-ui/core';
+import { useCourtPositionsState, useCourtPositionsDispatch } from '../../hooks/courtPositions';
+import CourtTab from './CourtTab';
 
 const renderTabs = courtPositions => (
   Object.values(courtPositions).map(court => (
-    <Tab>{court.name}</Tab>
+    <CourtTab key={`court-tab-#${court.id}`} id={court.id} name={court.name} />
   ))
 )
 
 function CourtTabs() {
+  const [newCourtId, setCourtId] = React.useState(3);
   const courtPositions = useCourtPositionsState();
+  const courtPositionsDispatch = useCourtPositionsDispatch();
+
+  const handleAddCourt = () => {
+    courtPositionsDispatch({ type: 'ADD_COURT', id: newCourtId })
+    setCourtId(prev => prev + 1)
+  }
 
   return (
-    <TabList>
+    <Flex>
       {renderTabs(courtPositions)}
-    </TabList>
+      <IconButton
+        icon="add"
+        variant="ghost"
+        isRound
+        onClick={handleAddCourt}
+      />
+    </Flex>
   )
 }
 
