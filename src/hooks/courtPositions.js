@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { lensProp, omit, reject, set } from 'ramda';
+import { lensProp, omit, remove, set } from 'ramda';
 
 const CourtPositionsStateContext = React.createContext();
 const CourtPositionsDispatchContext = React.createContext();
@@ -23,13 +23,15 @@ function courtPositionsReducer(state, action) {
       };
     }
     case 'DELETE_POSITION': {
-      const { currentCourt, selectedPosition } = action;
-      const updatedCourt = reject(
-        ({ position }) => JSON.stringify(position) === JSON.stringify(selectedPosition),
-        state[currentCourt].value
-      );
-      state[currentCourt].value = updatedCourt;
-      return state;
+      const { currentCourt, selectedPoistionIndex } = action;
+
+      return {
+        ...state,
+        [currentCourt]: {
+          ...state[currentCourt],
+          value: remove(selectedPoistionIndex, 1, state[currentCourt].value)
+        }
+      };
     }
     case 'EDIT_COURT_NAME': {
       const newCourt = set(lensProp('name'), action.court, state[action.id]);

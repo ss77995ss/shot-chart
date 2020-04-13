@@ -1,5 +1,10 @@
 export const SHOT_TYPE = {
   MADE: 'o',
   MISS: 'x',
-  UNDO: 'undo',
 };
+
+export const MODE_TYPE = {
+  INSERT: 'insert',
+  DELETE: 'delete',
+  DRAG: 'drag',
+}

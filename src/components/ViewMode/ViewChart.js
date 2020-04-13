@@ -15,7 +15,7 @@ function ViewChart() {
   return (
     <Box className="App-logo-wrapper">
       <FieldGoal shotPositions={currentShotPositions} />
-      <ShotPositions shotPositions={currentShotPositions} />
+      <ShotPositions mode="view" shotPositions={currentShotPositions} />
     </Box>
   );
 }

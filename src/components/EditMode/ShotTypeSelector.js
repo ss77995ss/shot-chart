@@ -8,7 +8,6 @@ function ShotTypeSelector({ onClick }) {
     <Box>
       <button value={SHOT_TYPE.MADE} onClick={onClick}>MADE</button>
       <button value={SHOT_TYPE.MISS} onClick={onClick}>MISS</button>
-      <button value={SHOT_TYPE.UNDO} onClick={onClick}>UNDO</button>
     </Box>
   )
 }
