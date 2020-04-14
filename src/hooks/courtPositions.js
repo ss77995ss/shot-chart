@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { lensProp, omit, remove, set } from 'ramda';
+import { lensProp, omit, remove, set, update } from 'ramda';
 
 const CourtPositionsStateContext = React.createContext();
 const CourtPositionsDispatchContext = React.createContext();
@@ -22,7 +22,7 @@ function courtPositionsReducer(state, action) {
         ...omit(action.id, state),
       };
     }
-    case 'DELETE_POSITION': {
+    case 'DELETE_SHOT': {
       const { currentCourt, selectedPoistionIndex } = action;
 
       return {
@@ -41,9 +41,20 @@ function courtPositionsReducer(state, action) {
         [action.id]: newCourt
       };
     }
-    case 'UPDATE_COURT_POSITIONS': {
+    case 'ADD_SHOT': {
       state[action.currentCourt].value = state[action.currentCourt].value.concat(action.positions);
       return state;
+    }
+    case 'UPDATE_SHOT': {
+      const { currentCourt, selectedPoistionIndex, newShot } = action;
+
+      return {
+        ...state,
+        [currentCourt]: {
+          ...state[currentCourt],
+          value: update(selectedPoistionIndex, newShot, state[currentCourt].value)
+        }
+      };
     }
     default: {
       throw new Error('Court Position Reducer needs action');

@@ -22,7 +22,7 @@ function Shot({ position }) {
 
   const handleDelete = () => {
     courtPositionsDispatch({
-      type: 'DELETE_POSITION',
+      type: 'DELETE_SHOT',
       currentCourt,
       selectedPosition: position,
     });

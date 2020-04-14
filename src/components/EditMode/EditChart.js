@@ -22,9 +22,9 @@ function EditChart({ mode, shotType }) {
   };
 
   const handleClick = () => {
-    if (mode === 'delete') return null
+    if (mode !== 'insert') return null
     courtPositionsDispatch({
-      type: 'UPDATE_COURT_POSITIONS',
+      type: 'ADD_SHOT',
       currentCourt,
       positions: {
         type: shotType,
@@ -56,8 +56,7 @@ function EditChart({ mode, shotType }) {
             color={shotType === SHOT_TYPE.MADE ? '#f00' : '#00f'}
             fontSize={20}
             position="absolute"
-            left={position.x - 8}
-            top={position.y - 16}
+            transform={`translate(${position.x - 8}px, ${position.y - 40}px)`}
             pointerEvents="none"
           >
             {shotType}

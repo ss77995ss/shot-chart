@@ -8,6 +8,7 @@ function ModeTypeSelector({ onClick }) {
     <Box>
       <button value={MODE_TYPE.UNDO} onClick={onClick}>{MODE_TYPE.UNDO}</button>
       <button value={MODE_TYPE.DELETE} onClick={onClick}>{MODE_TYPE.DELETE}</button>
+      <button value={MODE_TYPE.DRAG} onClick={onClick}>{MODE_TYPE.DRAG}</button>
     </Box>
   )
 }

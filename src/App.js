@@ -17,7 +17,7 @@ function App() {
     <CourtPositionsProvider>
       <ThemeProvider theme={theme}>
         <CSSReset />
-        <Box h={600} align="center" justify="center" bg="#282c34" color="white">
+        <Box align="center" justify="center" bg="#282c34" color="white">
           <Box>
             <Button m={4} value="EDIT" onClick={handleSwitchMode} bg="blue">EDIT</Button>
             <Button m={4} value="VIEW" onClick={handleSwitchMode} bg="blue">VIEW</Button>
