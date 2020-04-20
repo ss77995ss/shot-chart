@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
 import { useCourtPositionsDispatch } from '../hooks/courtPositions';
-import { SHOT_TYPE } from '../constants/base';
+import { SHOT_TYPE, POINTS_TYPE } from '../constants/base';
+import { getPoints } from '../utils/common';
 
 function DraggableShot({ currentCourt, index, shot }) {
   const { type, position } = shot;
@@ -14,27 +15,37 @@ function DraggableShot({ currentCourt, index, shot }) {
     fontSize: '20px',
     position: 'absolute',
     zIndex: index,
+    cursor: 'grab',
   };
 
   const handleStart = () => setActiveDrag(true);
   const handleStop = (e, ui) => {
+    const position = {
+      x: ui.x + 8,
+      y: ui.y + 20,
+    };
+    const points = getPoints(position.x, position.y);
+
+    if (points === POINTS_TYPE.INVALID) {
+      alert('Position is invalid');
+      return null;
+    }
+
     courtPositionsDispatch({
       type: 'UPDATE_SHOT',
       currentCourt,
       selectedPoistionIndex: index,
       newShot: {
         type,
-        position: {
-          x: ui.x + 8,
-          y: ui.y + 40,
-        }
+        points,
+        position,
       },
     })
     setActiveDrag(false);
   }
 
   return (
-    <Draggable position={{ x: position.x - 8, y: position.y - 40 }} bounds="parent" onStart={handleStart} onStop={handleStop}>
+    <Draggable position={{ x: position.x - 8, y: position.y - 20 }} bounds="parent" onStart={handleStart} onStop={handleStop}>
       <span className={className} style={style}>{type}</span>
     </Draggable>
   )

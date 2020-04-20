@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { Box, Text, Tabs } from '@chakra-ui/core';
 import { useCourtState, useCourtDispatch } from '../../hooks/court';
 import { useCourtPositionsState, useCourtPositionsDispatch } from '../../hooks/courtPositions';
+import { getPoints } from '../../utils/common';
+import { SHOT_TYPE, MODE_TYPE, POINTS_TYPE } from '../../constants/base';
 import CourtTabs from './CourtTabs';
 import FieldGoal from '../FieldGoal';
 import ShotPositions from '../ShotPositions';
-import { SHOT_TYPE } from '../../constants/base';
 
 function EditChart({ mode, shotType }) {
   const [position, setPosition] = React.useState({ x: 0, y: 0 });
@@ -17,17 +18,24 @@ function EditChart({ mode, shotType }) {
   const currentShotPositions = courtPositions[currentCourt].value
 
   const handleMouseMove = event => {
-    event.preventDefault();
     setPosition({ x: event.nativeEvent.offsetX, y: event.nativeEvent.offsetY });
   };
 
   const handleClick = () => {
-    if (mode !== 'insert') return null
+    if (mode !== MODE_TYPE.INSERT) return null;
+    const points = getPoints(position.x, position.y)
+
+    if (points === POINTS_TYPE.INVALID) {
+      alert('Position is invalid');
+      return null;
+    }
+
     courtPositionsDispatch({
       type: 'ADD_SHOT',
       currentCourt,
       positions: {
         type: shotType,
+        points,
         position,
       },
     });
@@ -42,7 +50,6 @@ function EditChart({ mode, shotType }) {
     <Tabs onChange={handleCourtChange}>
       <CourtTabs />
       <Box
-        pointerEvents={currentCourt ? 'auto' : 'none'}
         className="App-logo-wrapper"
         onClick={handleClick}
         onMouseMove={handleMouseMove}
@@ -50,13 +57,13 @@ function EditChart({ mode, shotType }) {
         <FieldGoal shotPositions={currentShotPositions} />
         <ShotPositions mode={mode} shotPositions={currentShotPositions} />
         {
-          mode === 'insert' &&
+          mode === MODE_TYPE.INSERT &&
           <Text
             as="span"
             color={shotType === SHOT_TYPE.MADE ? '#f00' : '#00f'}
             fontSize={20}
             position="absolute"
-            transform={`translate(${position.x - 8}px, ${position.y - 40}px)`}
+            transform={`translate(${position.x - 8}px, ${position.y - 20}px)`}
             pointerEvents="none"
           >
             {shotType}

@@ -8,3 +8,9 @@ export const MODE_TYPE = {
   DELETE: 'delete',
   DRAG: 'drag',
 }
+
+export const POINTS_TYPE = {
+  TWO: 'two',
+  THREE: 'three',
+  INVALID: 'invalid',
+}

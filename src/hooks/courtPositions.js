@@ -42,8 +42,15 @@ function courtPositionsReducer(state, action) {
       };
     }
     case 'ADD_SHOT': {
-      state[action.currentCourt].value = state[action.currentCourt].value.concat(action.positions);
-      return state;
+      const { currentCourt, positions } = action
+
+      return {
+        ...state,
+        [currentCourt]: {
+          ...state[currentCourt],
+          value: state[currentCourt].value.concat(positions),
+        }
+      };
     }
     case 'UPDATE_SHOT': {
       const { currentCourt, selectedPoistionIndex, newShot } = action;
