@@ -9,13 +9,12 @@ function DraggableShot({ currentCourt, index, shot }) {
   const { type, position } = shot;
   const [ activeDrag, setActiveDrag ] = React.useState(false);
   const courtPositionsDispatch = useCourtPositionsDispatch();
-  const className = !activeDrag ? 'dragged' : ''
   const style = {
     color: shot.type === SHOT_TYPE.MADE ? 'red' : 'blue',
     fontSize: '20px',
     position: 'absolute',
     zIndex: index,
-    cursor: 'grab',
+    cursor: activeDrag ? 'grabbing' : 'grab',
   };
 
   const handleStart = () => setActiveDrag(true);
@@ -46,7 +45,7 @@ function DraggableShot({ currentCourt, index, shot }) {
 
   return (
     <Draggable position={{ x: position.x - 8, y: position.y - 20 }} bounds="parent" onStart={handleStart} onStop={handleStop}>
-      <span className={className} style={style}>{type}</span>
+      <span style={style}>{type}</span>
     </Draggable>
   )
 }
