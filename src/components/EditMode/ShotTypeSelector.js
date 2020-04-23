@@ -9,6 +9,7 @@ function ShotTypeSelector({ onClick }) {
       {
         Object.entries(SHOT_TYPE).map(entry => (
           <Button
+            key={`shop-type-selector-${entry[0]}`}
             variantColor="blue"
             mr={2}
             my={2}

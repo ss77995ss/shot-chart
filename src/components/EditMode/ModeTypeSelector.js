@@ -11,6 +11,7 @@ function ModeTypeSelector({ onClick }) {
           .filter(entry => entry[1] !== MODE_TYPE.INSERT)
           .map(entry => (
             <Button
+              key={`shop-type-selector-${entry[0]}`}
               variantColor='blue'
               mr={2}
               my={2}

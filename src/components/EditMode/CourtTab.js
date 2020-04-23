@@ -4,27 +4,27 @@ import {
   Box,
   Flex,
   IconButton,
-  useDisclosure,
 } from '@chakra-ui/core';
 import { useCourtState, useCourtDispatch } from '../../hooks/court';
 import { useCourtPositionsState, useCourtPositionsDispatch } from '../../hooks/courtPositions';
-import TabModal from './TabModal';
 
 function CourtTab({ id, name }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const { currentCourt } = useCourtState();
   const courtPositions = useCourtPositionsState();
   const courtDispatch = useCourtDispatch();
   const courtPositionsDispatch = useCourtPositionsDispatch();
 
-  const handleClick = () => {
+  const handleClick = event => {
+    event.preventDefault();
     courtDispatch({
       type: 'SELECT_COURT',
       court: id,
     });
   }
 
-  const handleDelete = () => {
+  const handleDelete = event => {
+    event.preventDefault();
+    event.stopPropagation();
     if (Object.keys(courtPositions).length === 1) {
       alert('Need at least one court');
       return null;
@@ -48,14 +48,6 @@ function CourtTab({ id, name }) {
           {name}
         </Box>
         <IconButton
-          icon="edit"
-          size="xs"
-          variant="ghost"
-          isRound
-          onClick={onOpen}
-          _hover={{ bg: "blue.700" }}
-        />
-        <IconButton
           icon="small-close"
           size="xs"
           variant="ghost"
@@ -63,7 +55,6 @@ function CourtTab({ id, name }) {
           onClick={handleDelete}
           _hover={{ bg: "blue.700" }}
         />
-        <TabModal id={id} isOpen={isOpen} onClose={onClose} />
       </Flex>
   )
 }

@@ -30,6 +30,7 @@ function CourtTabs() {
         isRound
         onClick={handleAddCourt}
         my="auto"
+        ml={2}
       />
     </Flex>
   )
