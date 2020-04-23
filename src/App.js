@@ -1,5 +1,14 @@
 import React from 'react';
-import { CSSReset, theme, ThemeProvider, Box, Button } from '@chakra-ui/core';
+import {
+  CSSReset,
+  theme,
+  ThemeProvider,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel,
+} from '@chakra-ui/core';
 import { CourtProvider } from './hooks/court';
 import { CourtPositionsProvider } from './hooks/courtPositions';
 import EditMode from './components/EditMode';
@@ -7,23 +16,21 @@ import ViewMode from './components/ViewMode';
 import './App.css';
 
 function App() {
-  const [mode, setMode] = React.useState('EDIT');
-  const handleSwitchMode = event => {
-    setMode(event.target.value);
-  };
-
   return (
     <CourtProvider>
     <CourtPositionsProvider>
       <ThemeProvider theme={theme}>
         <CSSReset />
-        <Box align="center" justify="center" bg="#282c34" color="white">
-          <Box>
-            <Button m={4} value="EDIT" onClick={handleSwitchMode} bg="blue">EDIT</Button>
-            <Button m={4} value="VIEW" onClick={handleSwitchMode} bg="blue">VIEW</Button>
-            { mode === 'EDIT' ? <EditMode /> : <ViewMode /> }
-          </Box>
-        </Box>
+        <Tabs variant="soft-rounded" align="center">
+          <TabList>
+            <Tab m={2}>EDIT</Tab>
+            <Tab m={2}>VIEW</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel><EditMode /></TabPanel>
+            <TabPanel><ViewMode /></TabPanel>
+          </TabPanels>
+        </Tabs>
       </ThemeProvider>
     </CourtPositionsProvider>
     </CourtProvider>

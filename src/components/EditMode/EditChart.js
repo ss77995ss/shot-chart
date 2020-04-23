@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Text, Tabs } from '@chakra-ui/core';
+import { Box, Text } from '@chakra-ui/core';
 import { useCourtState, useCourtDispatch } from '../../hooks/court';
 import { useCourtPositionsState, useCourtPositionsDispatch } from '../../hooks/courtPositions';
 import { getPoints } from '../../utils/common';
@@ -47,7 +47,7 @@ function EditChart({ mode, shotType }) {
   });
 
   return (
-    <Tabs onChange={handleCourtChange}>
+    <Box ml="auto" onChange={handleCourtChange}>
       <CourtTabs />
       <Box
         className="App-logo-wrapper"
@@ -70,7 +70,7 @@ function EditChart({ mode, shotType }) {
           </Text>
         }
       </Box>
-    </Tabs>
+    </Box>
   )
 }
 

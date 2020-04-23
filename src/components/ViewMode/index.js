@@ -5,9 +5,9 @@ import CourtSwitcher from './CourtSwitcher';
 
 function ViewMode() {
   return (
-    <Flex align="center">
+    <Flex>
       <ViewChart />
-      <Box>
+      <Box mx="auto" mt="40px" w={300}>
         <CourtSwitcher />
       </Box>
     </Flex>

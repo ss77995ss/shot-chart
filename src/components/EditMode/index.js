@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Text } from '@chakra-ui/core';
+import { Box, Flex, Text } from '@chakra-ui/core';
 import EditChart from './EditChart';
 import ShotTypeSelector from './ShotTypeSelector';
 import ModeTypeSelector from './ModeTypeSelector';
@@ -21,14 +21,16 @@ function EditMode() {
   }
 
   return (
-    <Flex align="center">
+    <Flex>
       <EditChart
         mode={mode}
         shotType={shotType}
       />
-      <ShotTypeSelector onClick={handleSwitchShotType} />
-      <ModeTypeSelector onClick={handleSwitchModeType} />
-      <Text>{`Current Mode: ${mode}`}</Text>
+      <Box mx="auto" mt="40px" w={300}>
+        <Text mb="16px">{`Current Mode: ${mode}`}</Text>
+        <ShotTypeSelector onClick={handleSwitchShotType} />
+        <ModeTypeSelector onClick={handleSwitchModeType} />
+      </Box>
     </Flex>
   );
 }

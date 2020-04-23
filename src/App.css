@@ -5,7 +5,7 @@
 .App-logo-wrapper {
   position: relative;
   width: 500px;
-  height: 80vmin;
+  height: 500px;
   border: 1px solid white;
   background-image: url('./court.svg');
   background-size: cover;

@@ -1,13 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box } from '@chakra-ui/core';
+import { Box, Button } from '@chakra-ui/core';
 import { SHOT_TYPE } from '../../constants/base';
 
 function ShotTypeSelector({ onClick }) {
   return (
     <Box>
-      <button value={SHOT_TYPE.MADE} onClick={onClick}>MADE</button>
-      <button value={SHOT_TYPE.MISS} onClick={onClick}>MISS</button>
+      {
+        Object.entries(SHOT_TYPE).map(entry => (
+          <Button
+            variantColor="blue"
+            mr={2}
+            my={2}
+            value={entry[1]}
+            onClick={onClick}
+          >
+            {entry[0]}
+          </Button>
+        ))
+      }
     </Box>
   )
 }

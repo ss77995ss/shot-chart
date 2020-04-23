@@ -20,13 +20,16 @@ function CourtTabs() {
   }
 
   return (
-    <Flex>
+    <Flex h="40px">
       {renderTabs(courtPositions)}
       <IconButton
         icon="add"
         variant="ghost"
+        _hover={{ bg: "blue.700" }}
+        size="sm"
         isRound
         onClick={handleAddCourt}
+        my="auto"
       />
     </Flex>
   )

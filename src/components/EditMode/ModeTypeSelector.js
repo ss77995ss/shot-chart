@@ -1,14 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box } from '@chakra-ui/core';
+import { Box, Button } from '@chakra-ui/core';
 import { MODE_TYPE } from '../../constants/base';
 
 function ModeTypeSelector({ onClick }) {
   return (
     <Box>
-      <button value={MODE_TYPE.UNDO} onClick={onClick}>{MODE_TYPE.UNDO}</button>
-      <button value={MODE_TYPE.DELETE} onClick={onClick}>{MODE_TYPE.DELETE}</button>
-      <button value={MODE_TYPE.DRAG} onClick={onClick}>{MODE_TYPE.DRAG}</button>
+      {
+        Object.entries(MODE_TYPE)
+          .filter(entry => entry[1] !== MODE_TYPE.INSERT)
+          .map(entry => (
+            <Button
+              variantColor='blue'
+              mr={2}
+              my={2}
+              value={entry[1]}
+              onClick={onClick}
+            >
+              {entry[0]}
+            </Button>
+          ))
+      }
     </Box>
   )
 }

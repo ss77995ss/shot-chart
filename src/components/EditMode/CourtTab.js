@@ -43,23 +43,25 @@ function CourtTab({ id, name }) {
   const backgroundColor = currentCourt === id ? '#3182ce' : null
 
   return (
-      <Flex algin="center" bg={backgroundColor}>
-        <Box onClick={handleClick}>
+      <Flex alignItems="center" bg={backgroundColor} onClick={handleClick}>
+        <Box ml={2} mr={4}>
           {name}
         </Box>
         <IconButton
           icon="edit"
-          size="sm"
+          size="xs"
           variant="ghost"
           isRound
           onClick={onOpen}
+          _hover={{ bg: "blue.700" }}
         />
         <IconButton
           icon="small-close"
-          size="sm"
+          size="xs"
           variant="ghost"
           isRound
           onClick={handleDelete}
+          _hover={{ bg: "blue.700" }}
         />
         <TabModal id={id} isOpen={isOpen} onClose={onClose} />
       </Flex>

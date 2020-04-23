@@ -13,7 +13,7 @@ function ViewChart() {
     .flat();
 
   return (
-    <Box className="App-logo-wrapper">
+    <Box mt="40px" ml="auto" className="App-logo-wrapper">
       <FieldGoal shotPositions={currentShotPositions} />
       <ShotPositions mode="view" shotPositions={currentShotPositions} />
     </Box>
