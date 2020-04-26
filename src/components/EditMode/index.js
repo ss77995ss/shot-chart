@@ -3,6 +3,7 @@ import { Box, Flex, Text } from '@chakra-ui/core';
 import { useCourtState } from '../../hooks/court';
 import EditChart from './EditChart';
 import CourtNameForm from './CourtNameForm';
+import PlayerInfoForm from './PlayerInfoForm';
 import ShotTypeSelector from './ShotTypeSelector';
 import ModeTypeSelector from './ModeTypeSelector';
 import { SHOT_TYPE } from '../../constants/base';
@@ -30,7 +31,8 @@ function EditMode() {
         shotType={shotType}
       />
       <Box mx="auto" mt="40px" w={300}>
-        <Text mb="16px">{`Current Mode: ${mode}`}</Text>
+        <PlayerInfoForm />
+        <Text my="16px">{`Current Mode: ${mode}`}</Text>
         <ShotTypeSelector onClick={handleSwitchShotType} />
         <ModeTypeSelector onClick={handleSwitchModeType} />
         <CourtNameForm key={`court-name-form-${currentCourt}`} id={currentCourt} />

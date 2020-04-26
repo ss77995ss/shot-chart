@@ -41,6 +41,12 @@ function courtReducer(state, action) {
         selectedCourts: remainCourts,
       }
     }
+    case 'EDIT_PLAYER_INFO': {
+      return {
+        ...state,
+        playerInfo: action.playerInfo,
+      }
+    }
     default: {
       throw new Error('Court Position Reducer needs action');
     }
@@ -53,6 +59,13 @@ function CourtProvider({ children }) {
     newCourtId: 3,
     currentCourt: '1',
     selectedCourts: ['1'],
+    playerInfo: {
+      team: 'Team1',
+      name: 'Player1',
+      number: '1',
+      position: 'PG',
+      hand: 'Right',
+    },
   })
   return (
     <CourtStateContext.Provider value={state}>
