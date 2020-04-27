@@ -6,17 +6,21 @@ import { SHOT_TYPE, POINTS_TYPE } from '../constants/base';
 function FieldGoal({ shotPositions }) {
   const shotMades = shotPositions.filter(shot => shot.type === SHOT_TYPE.MADE).length;
   const shotTakes = shotPositions.length;
+  const shootingPercentage = shotTakes !== 0 ? (shotMades * 100) / shotTakes : 0;
   const threeMades = shotPositions.filter(
     shot => (shot.type === SHOT_TYPE.MADE) && (shot.points === POINTS_TYPE.THREE)
   ).length;
   const threeTakes = shotPositions.filter(
     shot => shot.points === POINTS_TYPE.THREE
   ).length;
+  const threePointPercentage = threeTakes !== 0 ? (threeMades * 100) / threeTakes : 0;
 
   return (
-    <Box position="absolute">
-      <Text>{`FG: ${shotMades} - ${shotTakes}`}</Text>
-      <Text>{`3PTS: ${threeMades} - ${threeTakes}`}</Text>
+    <Box position="absolute" p={4} right={0} bottom={0} color="black">
+      <Text fontFamily="charlemagne-std">{`FG: ${shotMades} - ${shotTakes}`}</Text>
+      <Text fontFamily="charlemagne-std">{`${shootingPercentage.toFixed(2)} %`}</Text>
+      <Text fontFamily="charlemagne-std">{`3PT: ${threeMades} - ${threeTakes}`}</Text>
+      <Text fontFamily="charlemagne-std">{`${threePointPercentage.toFixed(2)} %`}</Text>
     </Box>
   );
 }

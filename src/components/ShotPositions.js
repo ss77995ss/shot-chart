@@ -25,7 +25,7 @@ function ShotPositions({ mode, shotPositions }) {
         position: 'absolute',
         transform: `translate(${shot.position.x - 8}px, ${shot.position.y - 20}px)`,
         pointerEvents: mode !== 'insert' ? 'auto' : 'none',
-        zIndex: index,
+        zIndex: 1000 + index,
       };
       if (mode === MODE_TYPE.DELETE) return <button key={index} style={style} onClick={handleDelete(index)}>{shot.type}</button>
       if (mode === MODE_TYPE.DRAG) return <DraggableShot currentCourt={currentCourt} key={index} index={index} shot={shot} />
