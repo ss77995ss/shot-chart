@@ -25,19 +25,27 @@ function CourtTab({ id, name }) {
   const handleDelete = event => {
     event.preventDefault();
     event.stopPropagation();
+
     if (Object.keys(courtPositions).length === 1) {
       alert('Need at least one court');
       return null;
     }
-    console.log(`${id} is been deleted`);
+
+    if (id === currentCourt) {
+      return alert('Can not delete selected court')
+    }
+
     courtPositionsDispatch({
       type: 'DELETE_COURT',
       id,
     });
+
     courtDispatch({
       type: 'DELETE_COURT',
       id,
     });
+
+    console.log(`${id} is been deleted`);
   };
 
   const backgroundColor = currentCourt === id ? '#3182ce' : null
@@ -48,6 +56,7 @@ function CourtTab({ id, name }) {
           {name}
         </Box>
         <IconButton
+          mr={1}
           icon="small-close"
           size="xs"
           variant="ghost"
