@@ -16,7 +16,7 @@ function FieldGoal({ shotPositions }) {
   const threePointPercentage = threeTakes !== 0 ? (threeMades * 100) / threeTakes : 0;
 
   return (
-    <Box position="absolute" p={4} right={0} bottom={0} color="black">
+    <Box position="absolute" p={8} right={0} bottom={0} color="black">
       <Text fontFamily="charlemagne-std">{`FG: ${shotMades} - ${shotTakes}`}</Text>
       <Text fontFamily="charlemagne-std">{`${shootingPercentage.toFixed(2)} %`}</Text>
       <Text fontFamily="charlemagne-std">{`3PT: ${threeMades} - ${threeTakes}`}</Text>
