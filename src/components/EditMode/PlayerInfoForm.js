@@ -32,25 +32,25 @@ function PlayerNameForm() {
 
   return (
     <>
-      <Button variantColor="blue" onClick={onOpen}>EDIT PLAYER INFO</Button>
+      <Button variantColor="blue" onClick={onOpen}>修改球員資料</Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent color="black">
-          <ModalHeader>EDIT PLAYER INFO</ModalHeader>
+          <ModalHeader>修改球員資料</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Box alignItems="flex-end">
                 <FormControl>
-                  <FormLabel htmlFor="team">Change Team Name</FormLabel>
+                  <FormLabel htmlFor="team">隊伍名稱</FormLabel>
                   <Input ref={register} name="team" defaultValue={team} />
-                  <FormLabel htmlFor="name">Change Player Name</FormLabel>
+                  <FormLabel htmlFor="name">球員名稱</FormLabel>
                   <Input ref={register} name="name" defaultValue={name} />
-                  <FormLabel htmlFor="number">Change Player Number</FormLabel>
+                  <FormLabel htmlFor="number">球員號碼</FormLabel>
                   <Input ref={register} name="number" defaultValue={number} />
-                  <FormLabel htmlFor="position">Change Player Position</FormLabel>
+                  <FormLabel htmlFor="position">球員位置</FormLabel>
                   <Input ref={register} name="position" defaultValue={position} />
-                  <FormLabel htmlFor="hand">Change Player Hand</FormLabel>
+                  <FormLabel htmlFor="hand">慣用手</FormLabel>
                   <Input ref={register} name="hand" defaultValue={hand} />
                 </FormControl>
                 <Button
@@ -58,7 +58,7 @@ function PlayerNameForm() {
                   type="submit"
                   variantColor="blue"
                 >
-                  Save
+                  儲存
                 </Button>
               </Box>
             </form>

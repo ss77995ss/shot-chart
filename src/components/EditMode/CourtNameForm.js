@@ -25,7 +25,7 @@ function CourtNameForm({ id }) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex mt={5} alignItems="flex-end">
         <FormControl>
-          <FormLabel htmlFor="court">Change Court Name</FormLabel>
+          <FormLabel htmlFor="court">修改分佈圖名稱</FormLabel>
           <Input ref={register} name="court" color="black" defaultValue={id} />
         </FormControl>
         <Button
@@ -33,7 +33,7 @@ function CourtNameForm({ id }) {
           type="submit"
           variantColor="blue"
         >
-          Save
+          儲存
         </Button>
       </Flex>
     </form>

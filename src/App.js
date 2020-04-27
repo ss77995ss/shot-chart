@@ -23,8 +23,8 @@ function App() {
         <CSSReset />
         <Tabs variant="soft-rounded" align="center">
           <TabList>
-            <Tab m={2}>EDIT</Tab>
-            <Tab m={2}>VIEW</Tab>
+            <Tab m={2}>編輯</Tab>
+            <Tab m={2}>檢視</Tab>
           </TabList>
           <TabPanels>
             <TabPanel><EditMode /></TabPanel>

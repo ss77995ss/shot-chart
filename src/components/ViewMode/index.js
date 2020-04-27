@@ -8,7 +8,7 @@ function ViewMode() {
     <Flex>
       <ViewChart />
       <Box mx="auto" mt="40px" w={300}>
-        <Heading as="h3" mb={4}>Courts:</Heading>
+        <Heading as="h3" mb={4}>分佈圖:</Heading>
         <CourtSwitcher />
       </Box>
     </Flex>

@@ -6,20 +6,26 @@ import { SHOT_TYPE } from '../../constants/base';
 function ShotTypeSelector({ onClick }) {
   return (
     <Box>
-      {
-        Object.entries(SHOT_TYPE).map(entry => (
-          <Button
-            key={`shop-type-selector-${entry[0]}`}
+      <Button
+            key={`shop-type-selector-${SHOT_TYPE.MADE}}`}
             variantColor="blue"
             mr={2}
             my={2}
-            value={entry[1]}
+            value={SHOT_TYPE.MADE}
             onClick={onClick}
-          >
-            {entry[0]}
-          </Button>
-        ))
-      }
+      >
+        進
+      </Button>
+      <Button
+            key={`shop-type-selector-${SHOT_TYPE.MISS}}`}
+            variantColor="blue"
+            mr={2}
+            my={2}
+            value={SHOT_TYPE.MISS}
+            onClick={onClick}
+      >
+        不進
+      </Button>
     </Box>
   )
 }

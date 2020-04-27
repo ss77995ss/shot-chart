@@ -60,11 +60,11 @@ function CourtProvider({ children }) {
     currentCourt: '1',
     selectedCourts: ['1'],
     playerInfo: {
-      team: 'Team1',
-      name: 'Player1',
+      team: '隊伍',
+      name: '球員',
       number: '1',
       position: 'PG',
-      hand: 'Right',
+      hand: '右手',
     },
   })
   return (

@@ -4,9 +4,9 @@ export const SHOT_TYPE = {
 };
 
 export const MODE_TYPE = {
-  INSERT: 'insert',
-  DELETE: 'delete',
-  DRAG: 'drag',
+  INSERT: '加入',
+  DELETE: '刪除',
+  DRAG: '拖曳',
 }
 
 export const POINTS_TYPE = {

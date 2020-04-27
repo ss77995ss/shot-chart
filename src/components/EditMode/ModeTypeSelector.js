@@ -18,7 +18,7 @@ function ModeTypeSelector({ onClick }) {
               value={entry[1]}
               onClick={onClick}
             >
-              {entry[0]}
+              {entry[1]}
             </Button>
           ))
       }

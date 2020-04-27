@@ -11,7 +11,7 @@ function PlayerInfo() {
       <Text py={8} fontFamily="Heiti">{name}</Text>
       <Text p={8} fontFamily="charlemagne-std">{`#${number} ${position}`}</Text>
       <Box p={8} position="absolute" left="0" bottom="0" textAlign="center">
-        <Text fontFamily="Heiti">HAND</Text>
+        <Text fontFamily="Heiti">慣用手</Text>
         <Text fontFamily="Heiti">{hand}</Text>
       </Box>
     </>

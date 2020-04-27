@@ -7,10 +7,10 @@ import CourtNameForm from './CourtNameForm';
 import PlayerInfoForm from './PlayerInfoForm';
 import ShotTypeSelector from './ShotTypeSelector';
 import ModeTypeSelector from './ModeTypeSelector';
-import { SHOT_TYPE } from '../../constants/base';
+import { SHOT_TYPE, MODE_TYPE } from '../../constants/base';
 
 function EditMode() {
-  const [mode, setMode] = React.useState('insert');
+  const [mode, setMode] = React.useState(MODE_TYPE.INSERT);
   const [shotType, setShotType] = React.useState(SHOT_TYPE.MADE);
   const { currentCourt } = useCourtState();
   const courtPositions = useCourtPositionsState();
@@ -18,7 +18,7 @@ function EditMode() {
 
   const handleSwitchShotType = event => {
     console.log(`Change shot type! ${event.target.value}`);
-    setMode('insert');
+    setMode(MODE_TYPE.INSERT);
     setShotType(event.target.value);
   };
 
@@ -47,11 +47,11 @@ function EditMode() {
       />
       <Box mx="auto" mt="40px" w={300}>
         <PlayerInfoForm />
-        <Text my="16px">{`Current Mode: ${mode}`}</Text>
+        <Text my="16px">{`現在的編輯模式: ${mode}`}</Text>
         <ShotTypeSelector onClick={handleSwitchShotType} />
         <ModeTypeSelector onClick={handleSwitchModeType} />
         <CourtNameForm key={`court-name-form-${currentCourt}`} id={currentCourt} />
-        <Button mt={4} variantColor="blue" onClick={handleUndo}>UNDO</Button>
+        <Button mt={4} variantColor="blue" onClick={handleUndo}>上一步</Button>
       </Box>
     </Flex>
   );
