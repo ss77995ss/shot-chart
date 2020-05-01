@@ -14,3 +14,13 @@ export const POINTS_TYPE = {
   THREE: 'three',
   INVALID: 'invalid',
 }
+
+export const PLAYER_POSITION = {
+  G: 'G',
+  PG: 'PG',
+  SG: 'SG',
+  F: 'F',
+  SF: 'SF',
+  PF: 'PF',
+  C: 'C',
+}

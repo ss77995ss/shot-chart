@@ -4,7 +4,7 @@ import { useCourtState } from '../../hooks/court';
 import { useCourtPositionsState, useCourtPositionsDispatch } from '../../hooks/courtPositions';
 import EditChart from './EditChart';
 import CourtNameForm from './CourtNameForm';
-import PlayerInfoForm from './PlayerInfoForm';
+import PlayerInfoModal from './PlayerInfoModal';
 import ShotTypeSelector from './ShotTypeSelector';
 import ModeTypeSelector from './ModeTypeSelector';
 import { SHOT_TYPE, MODE_TYPE } from '../../constants/base';
@@ -46,7 +46,7 @@ function EditMode() {
         shotType={shotType}
       />
       <Box mx="auto" mt="40px" w={300}>
-        <PlayerInfoForm />
+        <PlayerInfoModal />
         <Text my="16px">{`現在的編輯模式: ${mode}`}</Text>
         <ShotTypeSelector onClick={handleSwitchShotType} />
         <ModeTypeSelector onClick={handleSwitchModeType} />

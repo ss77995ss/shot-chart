@@ -66,6 +66,7 @@ function CourtProvider({ children }) {
       number: '1',
       position: 'PG',
       hand: '右手',
+      games: '場次',
     },
   })
   return (

@@ -54,7 +54,9 @@ function EditChart({ mode, shotType }) {
         onClick={handleClick}
         onMouseMove={handleMouseMove}
       >
-        <FieldGoal shotPositions={currentShotPositions} />
+        <Box position="absolute" p={8} right={-2} bottom={0} fontSize={20}>
+          <FieldGoal shotPositions={currentShotPositions} />
+        </Box>
         <ShotPositions mode={mode} shotPositions={currentShotPositions} />
         {
           mode === MODE_TYPE.INSERT &&

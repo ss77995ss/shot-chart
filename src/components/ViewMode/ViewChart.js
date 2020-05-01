@@ -3,7 +3,6 @@ import { Box, Flex } from '@chakra-ui/core';
 import { useCourtState } from '../../hooks/court';
 import { useCourtPositionsState } from '../../hooks/courtPositions';
 import PlayerInfo from './PlayerInfo';
-import FieldGoal from '../FieldGoal';
 import ShotPositions from '../ShotPositions';
 
 function ViewChart() {
@@ -16,10 +15,9 @@ function ViewChart() {
   return (
     <Box mt="40px" ml="auto" className="App-logo-wrapper" color="black">
       <Flex justifyContent="space-between" fontSize={20}>
-        <PlayerInfo />
+        <PlayerInfo shotPositions={currentShotPositions} />
         <ShotPositions mode="view" shotPositions={currentShotPositions} />
       </Flex>
-      <FieldGoal shotPositions={currentShotPositions} />
     </Box>
   );
 }
