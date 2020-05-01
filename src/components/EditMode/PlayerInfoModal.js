@@ -32,7 +32,7 @@ function PlayerNameModal() {
     });
     onClose();
   }
-  const { team, name, number, position, hand, games } = playerInfo;
+  const { team, name, number, position, hand, gameCounts } = playerInfo;
 
   return (
     <>
@@ -65,8 +65,8 @@ function PlayerNameModal() {
                     <Radio ref={register} value="右手">右手</Radio>
                     <Radio ref={register} value="左手">左手</Radio>
                   </RadioGroup>
-                  <FormLabel htmlFor="games">場次</FormLabel>
-                  <Input ref={register} name="games" defaultValue={games} />
+                  <FormLabel htmlFor="games">場數</FormLabel>
+                  <Input ref={register} name="gameCounts" defaultValue={gameCounts} />
                 </FormControl>
                 <Button
                   my={3}

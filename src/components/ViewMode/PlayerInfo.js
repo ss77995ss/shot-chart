@@ -6,7 +6,7 @@ import FieldGoal from '../FieldGoal';
 
 function PlayerInfo({ shotPositions }) {
   const { playerInfo } = useCourtState();
-  const { team, name, number, position, hand, games } = playerInfo;
+  const { team, name, number, position, hand, gameCounts } = playerInfo;
   return (
     <>
       <Text p={8} fontFamily="Heiti">{team}</Text>
@@ -18,7 +18,7 @@ function PlayerInfo({ shotPositions }) {
           <Text fontFamily="Heiti">{hand}</Text>
         </Box>
         <Box>
-          <Text fontFamily="Heiti">{games}</Text>
+          <Text fontFamily="Heiti">{`場數：${gameCounts}`}</Text>
         </Box>
         <FieldGoal shotPositions={shotPositions} />
       </Flex>
