@@ -18,9 +18,9 @@ function FieldGoal({ shotPositions }) {
   return (
     <Box color="black">
       <Text fontFamily="charlemagne-std">{`FG: ${shotMades} - ${shotTakes}`}</Text>
-      <Text fontFamily="charlemagne-std">{`${shootingPercentage.toFixed(2)} %`}</Text>
+      <Text fontFamily="charlemagne-std">{`${shootingPercentage.toFixed(1)} %`}</Text>
       <Text fontFamily="charlemagne-std">{`3PT: ${threeMades} - ${threeTakes}`}</Text>
-      <Text fontFamily="charlemagne-std">{`${threePointPercentage.toFixed(2)} %`}</Text>
+      <Text fontFamily="charlemagne-std">{`${threePointPercentage.toFixed(1)} %`}</Text>
     </Box>
   );
 }
