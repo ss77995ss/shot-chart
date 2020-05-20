@@ -55,13 +55,14 @@ function PlayerNameModal() {
                   <FormLabel htmlFor="position">球員位置</FormLabel>
                   <Select name="position" ref={register} defaultValue={position}>
                     {
-                      Object.values(PLAYER_POSITION).map(position => (
-                        <option key={`position-${position}`} value={position}>{position}</option>
+                      Object.values(PLAYER_POSITION).map((position, index) => (
+                        <option key={`position-${index}`} value={position}>{position}</option>
                       ))
                     }
                   </Select>
                   <FormLabel htmlFor="hand">慣用手</FormLabel>
                   <RadioGroup name="hand" defaultValue={hand} isInline>
+                    <Radio ref={register} value="無">無</Radio>
                     <Radio ref={register} value="右手">右手</Radio>
                     <Radio ref={register} value="左手">左手</Radio>
                   </RadioGroup>

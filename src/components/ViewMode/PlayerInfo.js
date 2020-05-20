@@ -14,8 +14,13 @@ function PlayerInfo({ shotPositions }) {
       <Text p={8} fontFamily="charlemagne-std">{`#${number} ${position}`}</Text>
       <Flex w={500} p={8} position="absolute" left="0" bottom="0" justifyContent="space-between" alignItems="flex-end">
         <Box  textAlign="center">
-          <Text fontFamily="Heiti">慣用手</Text>
-          <Text fontFamily="Heiti">{hand}</Text>
+          {
+            hand !== '無' &&
+             <>
+              <Text fontFamily="Heiti">慣用手</Text>
+              <Text fontFamily="Heiti">{hand}</Text>
+             </>
+          }
         </Box>
         <Box position="absolute" left={250 - (gameCounts.length + 6) / 2 * 10}>
           <Text fontFamily="Heiti">{`場數：${gameCounts}`}</Text>

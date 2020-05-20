@@ -64,8 +64,8 @@ function CourtProvider({ children }) {
       team: '隊伍',
       name: '球員',
       number: '1',
-      position: 'PG',
-      hand: '右手',
+      position: '',
+      hand: '無',
       gameCounts: '1',
     },
   })

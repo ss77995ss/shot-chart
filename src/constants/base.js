@@ -16,6 +16,7 @@ export const POINTS_TYPE = {
 }
 
 export const PLAYER_POSITION = {
+  DEFAULT: '',
   G: 'G',
   PG: 'PG',
   SG: 'SG',
