@@ -12,12 +12,8 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-  Radio,
-  RadioGroup,
-  Select,
   useDisclosure,
 } from '@chakra-ui/core';
-import { PLAYER_POSITION } from '../../constants/base'
 import { useCourtState, useCourtDispatch } from '../../hooks/court';
 
 function PlayerNameModal() {
@@ -53,18 +49,9 @@ function PlayerNameModal() {
                   <FormLabel htmlFor="number">球員號碼</FormLabel>
                   <Input ref={register} name="number" defaultValue={number} />
                   <FormLabel htmlFor="position">球員位置</FormLabel>
-                  <Select name="position" ref={register} defaultValue={position}>
-                    {
-                      Object.values(PLAYER_POSITION).map(position => (
-                        <option key={`position-${position}`} value={position}>{position}</option>
-                      ))
-                    }
-                  </Select>
+                  <Input ref={register} name="position" defaultValue={position} />
                   <FormLabel htmlFor="hand">慣用手</FormLabel>
-                  <RadioGroup name="hand" defaultValue={hand} isInline>
-                    <Radio ref={register} value="右手">右手</Radio>
-                    <Radio ref={register} value="左手">左手</Radio>
-                  </RadioGroup>
+                  <Input ref={register} name="hand" defaultValue={hand} />
                   <FormLabel htmlFor="games">場數</FormLabel>
                   <Input ref={register} name="gameCounts" defaultValue={gameCounts} />
                 </FormControl>
