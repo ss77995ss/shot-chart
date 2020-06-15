@@ -53,3 +53,5 @@ export const DEFAULT_COURT_POSITIONS = {
     value: [],
   },
 }
+
+export const SAVE_DATA_VERSION = 1;

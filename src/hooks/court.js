@@ -6,8 +6,6 @@ import { DEFAULT_COURT } from '../constants/base';
 const CourtStateContext = React.createContext();
 const CourtDispatchContext = React.createContext();
 
-const defaultValue = JSON.parse(localStorage.getItem('court')) || DEFAULT_COURT;
-
 function courtReducer(state, action) {
   switch (action.type) {
     case 'SELECT_POSITION': {
@@ -61,7 +59,7 @@ function courtReducer(state, action) {
 }
 
 function CourtProvider({ children }) {
-  const [state, dispatch] = React.useReducer(courtReducer, defaultValue);
+  const [state, dispatch] = React.useReducer(courtReducer, DEFAULT_COURT);
   return (
     <CourtStateContext.Provider value={state}>
       <CourtDispatchContext.Provider value={dispatch}>
