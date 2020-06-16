@@ -9,6 +9,7 @@ import PlayerInfoModal from './PlayerInfoModal';
 import ShotTypeSelector from './ShotTypeSelector';
 import ModeTypeSelector from './ModeTypeSelector';
 import SaveDataModal from './SaveDataModal';
+import LoadDataModal from './LoadDataModal';
 
 function EditMode() {
   const [mode, setMode] = React.useState(MODE_TYPE.INSERT);
@@ -66,6 +67,7 @@ function EditMode() {
         <Button mt={4} mr={2} variantColor="blue" onClick={handleReset}>重設</Button>
         <Box>
           <SaveDataModal />
+          <LoadDataModal />
         </Box>
       </Box>
     </Flex>

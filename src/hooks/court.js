@@ -49,6 +49,11 @@ function courtReducer(state, action) {
         playerInfo: action.playerInfo,
       }
     }
+    case 'LOAD_COURT': {
+      return {
+        ...action.court,
+      }
+    }
     case 'RESET': {
       return DEFAULT_COURT;
     }

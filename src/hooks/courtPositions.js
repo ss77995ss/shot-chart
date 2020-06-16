@@ -64,6 +64,11 @@ function courtPositionsReducer(state, action) {
         }
       };
     }
+    case 'LOAD_COURT_POSITIONS': {
+      return {
+        ...action.courtPositions,
+      }
+    }
     case 'RESET': {
       return DEFAULT_COURT_POSITIONS;
     }
