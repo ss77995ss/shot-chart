@@ -2,21 +2,33 @@ import React from 'react';
 import { Box, Heading, Text } from '@chakra-ui/core';
 import { update } from 'ramda';
 import { SAVE_DATA_VERSION } from '../../constants/base';
-import { useCourtState } from '../../hooks/court';
-import { useCourtPositionsState } from '../../hooks/courtPositions';
+import { useCourtState, useCourtDispatch } from '../../hooks/court';
+import { useCourtPositionsState, useCourtPositionsDispatch} from '../../hooks/courtPositions';
 
-function SaveSlot({ savedData, slot, index, onClose, ...rest }) {
+function SaveSlot({ savedData, slot, index, action, onClose, ...rest }) {
   const [isHover, setIsHover] = React.useState(false);
   const court = useCourtState();
+  const courtDispatch = useCourtDispatch();
   const courtPositions = useCourtPositionsState();
+  const courtPositionsDispatch = useCourtPositionsDispatch();
   const targetData = { court, courtPositions, version: SAVE_DATA_VERSION, date: new Date() };
 
   const handleSave = () => {
-    const savedName = prompt('輸入存檔檔名：');
+    const savedName = prompt('輸入存檔檔名：', slot.savedName || '');
     const newData = update(index, { savedName, ...targetData }, savedData);
     localStorage.setItem('shotChartData', JSON.stringify(newData));
     onClose();
   };
+
+  const handleLoad = () => {
+    if (!slot) {
+      alert('空的儲存格！');
+      return onClose();
+    }
+    courtDispatch({ type: 'LOAD_COURT', court: slot.court });
+    courtPositionsDispatch({ type: 'LOAD_COURT_POSITIONS', courtPositions: slot.courtPositions });
+    onClose();
+  }
 
   return (
     <Box
@@ -28,7 +40,7 @@ function SaveSlot({ savedData, slot, index, onClose, ...rest }) {
       {...rest}
       onMouseOver={() => setIsHover(true)}
       onMouseOut={() => setIsHover(false)}
-      onClick={handleSave}
+      onClick={action === 'save' ? handleSave : handleLoad}
     >
       <Heading fontSize="md">{`SaveSlot - ${index + 1}: `}</Heading>
       <Text overflow="hidden" textOverflow="ellipsis">{slot.savedName}</Text>
