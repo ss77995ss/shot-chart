@@ -21,7 +21,7 @@ function SaveSlot({ savedData, slot, index, action, onClose, ...rest }) {
   };
 
   const handleLoad = () => {
-    if (!slot) {
+    if (!slot.date) {
       alert('空的儲存格！');
       return onClose();
     }
