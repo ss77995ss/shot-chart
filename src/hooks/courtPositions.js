@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { lensProp, omit, remove, set, update } from 'ramda';
+import { DEFAULT_COURT_POSITIONS } from '../constants/base';
 
 const CourtPositionsStateContext = React.createContext();
 const CourtPositionsDispatchContext = React.createContext();
@@ -63,6 +64,14 @@ function courtPositionsReducer(state, action) {
         }
       };
     }
+    case 'LOAD_COURT_POSITIONS': {
+      return {
+        ...action.courtPositions,
+      }
+    }
+    case 'RESET': {
+      return DEFAULT_COURT_POSITIONS;
+    }
     default: {
       throw new Error('Court Position Reducer needs action');
     }
@@ -70,18 +79,7 @@ function courtPositionsReducer(state, action) {
 }
 
 function CourtPositionsProvider({ children }) {
-  const [state, dispatch] = React.useReducer(courtPositionsReducer, {
-    1: {
-      id: '1',
-      name: '1',
-      value: [],
-    },
-    2: {
-      id: '2',
-      name: '2',
-      value: [],
-    },
-  })
+  const [state, dispatch] = React.useReducer(courtPositionsReducer, DEFAULT_COURT_POSITIONS)
   return (
     <CourtPositionsStateContext.Provider value={state}>
       <CourtPositionsDispatchContext.Provider value={dispatch}>

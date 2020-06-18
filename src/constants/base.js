@@ -25,3 +25,33 @@ export const PLAYER_POSITION = {
   PF: 'PF',
   C: 'C',
 }
+
+export const DEFAULT_COURT = {
+  selectedPosition: null,
+  newCourtId: 3,
+  currentCourt: '1',
+  selectedCourts: ['1'],
+  playerInfo: {
+    team: '隊伍',
+    name: '球員',
+    number: '1',
+    position: '',
+    hand: '無',
+    gameCounts: '1',
+  },
+}
+
+export const DEFAULT_COURT_POSITIONS = {
+  1: {
+    id: '1',
+    name: '1',
+    value: [],
+  },
+  2: {
+    id: '2',
+    name: '2',
+    value: [],
+  },
+}
+
+export const SAVE_DATA_VERSION = 1;

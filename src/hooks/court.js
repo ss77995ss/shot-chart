@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { reject } from 'ramda';
+import { DEFAULT_COURT } from '../constants/base';
 
 const CourtStateContext = React.createContext();
 const CourtDispatchContext = React.createContext();
@@ -48,6 +49,14 @@ function courtReducer(state, action) {
         playerInfo: action.playerInfo,
       }
     }
+    case 'LOAD_COURT': {
+      return {
+        ...action.court,
+      }
+    }
+    case 'RESET': {
+      return DEFAULT_COURT;
+    }
     default: {
       throw new Error('Court Position Reducer needs action');
     }
@@ -55,20 +64,7 @@ function courtReducer(state, action) {
 }
 
 function CourtProvider({ children }) {
-  const [state, dispatch] = React.useReducer(courtReducer, {
-    selectedPosition: null,
-    newCourtId: 3,
-    currentCourt: '1',
-    selectedCourts: ['1'],
-    playerInfo: {
-      team: '隊伍',
-      name: '球員',
-      number: '1',
-      position: '',
-      hand: '無',
-      gameCounts: '1',
-    },
-  })
+  const [state, dispatch] = React.useReducer(courtReducer, DEFAULT_COURT);
   return (
     <CourtStateContext.Provider value={state}>
       <CourtDispatchContext.Provider value={dispatch}>
