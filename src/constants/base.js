@@ -7,13 +7,13 @@ export const MODE_TYPE = {
   INSERT: '加入',
   DELETE: '刪除',
   DRAG: '拖曳',
-}
+};
 
 export const POINTS_TYPE = {
   TWO: 'two',
   THREE: 'three',
   INVALID: 'invalid',
-}
+};
 
 export const PLAYER_POSITION = {
   DEFAULT: '',
@@ -24,7 +24,7 @@ export const PLAYER_POSITION = {
   SF: 'SF',
   PF: 'PF',
   C: 'C',
-}
+};
 
 export const DEFAULT_COURT = {
   selectedPosition: null,
@@ -39,7 +39,7 @@ export const DEFAULT_COURT = {
     hand: '無',
     gameCounts: '1',
   },
-}
+};
 
 export const DEFAULT_COURT_POSITIONS = {
   1: {
@@ -52,6 +52,6 @@ export const DEFAULT_COURT_POSITIONS = {
     name: '2',
     value: [],
   },
-}
+};
 
 export const SAVE_DATA_VERSION = 1;

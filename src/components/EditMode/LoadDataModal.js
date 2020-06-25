@@ -17,7 +17,9 @@ function LoadDataModal() {
 
   return (
     <>
-      <Button mt={4} mr={2} variantColor="blue" onClick={onOpen}>讀取分佈圖</Button>
+      <Button mt={4} mr={2} variantColor="blue" onClick={onOpen}>
+        讀取分佈圖
+      </Button>
       <Modal h="100%" isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent color="black">
@@ -32,7 +34,7 @@ function LoadDataModal() {
         </ModalContent>
       </Modal>
     </>
-  )
+  );
 }
 
 export default LoadDataModal;

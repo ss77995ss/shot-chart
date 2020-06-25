@@ -10,7 +10,7 @@ function Shot({ position }) {
   const courtPositionsDispatch = useCourtPositionsDispatch();
   const isSelected = JSON.stringify(selectedPosition) === JSON.stringify(position);
   const style = {
-    backgroundColor:  isSelected ? 'blue' : null,
+    backgroundColor: isSelected ? 'blue' : null,
   };
 
   const handleClick = () => {
@@ -30,14 +30,16 @@ function Shot({ position }) {
       type: 'SELECT_POSITION',
       position: null,
     });
-  }
+  };
 
   return (
-    <li >
+    <li>
       <span style={style} onClick={handleClick}>
         {`X: ${position.x}, Y: ${position.y}`}
       </span>
-      <Button bg="blue" size="small" ml={4} onClick={handleDelete}>Delete</Button>
+      <Button bg="blue" size="small" ml={4} onClick={handleDelete}>
+        Delete
+      </Button>
     </li>
   );
 }
@@ -47,6 +49,6 @@ Shot.propTypes = {
     x: PropTypes.number,
     y: PropTypes.number,
   }).isRequired,
-}
+};
 
-export default Shot
+export default Shot;

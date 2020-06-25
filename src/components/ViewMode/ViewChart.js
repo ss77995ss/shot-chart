@@ -8,9 +8,7 @@ import ShotPositions from '../ShotPositions';
 function ViewChart() {
   const { selectedCourts } = useCourtState();
   const courtPositions = useCourtPositionsState();
-  const currentShotPositions = selectedCourts
-    .map(court => courtPositions[court].value)
-    .flat();
+  const currentShotPositions = selectedCourts.map((court) => courtPositions[court].value).flat();
 
   return (
     <Box mt="40px" ml="auto" className="App-logo-wrapper" color="black">

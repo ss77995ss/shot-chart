@@ -12,7 +12,7 @@ function courtReducer(state, action) {
       return {
         ...state,
         selectedPosition: action.position,
-      }
+      };
     }
     case 'SELECT_COURT': {
       return {
@@ -20,14 +20,14 @@ function courtReducer(state, action) {
         selectedPosition: null,
         currentCourt: action.court,
         selectedCourts: [action.court],
-      }
+      };
     }
     case 'SELECT_COURTS': {
       return {
         ...state,
         selectedPosition: null,
         selectedCourts: action.courts,
-      }
+      };
     }
     case 'ADD_COURT': {
       return {
@@ -41,18 +41,18 @@ function courtReducer(state, action) {
         ...state,
         currentCourt: remainCourts.slice(-1)[0],
         selectedCourts: remainCourts,
-      }
+      };
     }
     case 'EDIT_PLAYER_INFO': {
       return {
         ...state,
         playerInfo: action.playerInfo,
-      }
+      };
     }
     case 'LOAD_COURT': {
       return {
         ...action.court,
-      }
+      };
     }
     case 'RESET': {
       return DEFAULT_COURT;
@@ -67,23 +67,19 @@ function CourtProvider({ children }) {
   const [state, dispatch] = React.useReducer(courtReducer, DEFAULT_COURT);
   return (
     <CourtStateContext.Provider value={state}>
-      <CourtDispatchContext.Provider value={dispatch}>
-        {children}
-      </CourtDispatchContext.Provider>
+      <CourtDispatchContext.Provider value={dispatch}>{children}</CourtDispatchContext.Provider>
     </CourtStateContext.Provider>
   );
 }
 
 CourtProvider.propTypes = {
   children: PropTypes.element.isRequired,
-}
+};
 
 function useCourtState() {
   const context = React.useContext(CourtStateContext);
   if (context === undefined) {
-    throw new Error(
-      'useCourtState must be used within a CourtProvider'
-    );
+    throw new Error('useCourtState must be used within a CourtProvider');
   }
   return context;
 }
@@ -91,9 +87,7 @@ function useCourtState() {
 function useCourtDispatch() {
   const context = React.useContext(CourtDispatchContext);
   if (context === undefined) {
-    throw new Error(
-      'useCourtDispatch must be used within a CourtProvider'
-    );
+    throw new Error('useCourtDispatch must be used within a CourtProvider');
   }
   return context;
 }

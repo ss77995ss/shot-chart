@@ -3,14 +3,12 @@ import { Checkbox, CheckboxGroup } from '@chakra-ui/core';
 import { useCourtState, useCourtDispatch } from '../../hooks/court';
 import { useCourtPositionsState } from '../../hooks/courtPositions';
 
-const renderCheckboxes = courtPositions => {
-  return (
-    Object.values(courtPositions).map((court, index) => (
-      <Checkbox key={`checkbox-${court.id}`} value={court.id}>
-        {court.name}
-      </Checkbox>
-    ))
-  )
+const renderCheckboxes = (courtPositions) => {
+  return Object.values(courtPositions).map((court, index) => (
+    <Checkbox key={`checkbox-${court.id}`} value={court.id}>
+      {court.name}
+    </Checkbox>
+  ));
 };
 
 function CourtSwitcher() {
@@ -18,7 +16,7 @@ function CourtSwitcher() {
   const courtDispatch = useCourtDispatch();
   const courtPositions = useCourtPositionsState();
 
-  const handleCheckboxChange = checkedCourts => {
+  const handleCheckboxChange = (checkedCourts) => {
     courtDispatch({
       type: 'SELECT_COURTS',
       courts: checkedCourts,
@@ -34,7 +32,7 @@ function CourtSwitcher() {
     >
       {renderCheckboxes(courtPositions)}
     </CheckboxGroup>
-  )
+  );
 }
 
 export default CourtSwitcher;

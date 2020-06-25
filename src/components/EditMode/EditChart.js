@@ -15,15 +15,15 @@ function EditChart({ mode, shotType }) {
   const courtPositions = useCourtPositionsState();
   const courtDispatch = useCourtDispatch();
   const courtPositionsDispatch = useCourtPositionsDispatch();
-  const currentShotPositions = courtPositions[currentCourt].value
+  const currentShotPositions = courtPositions[currentCourt].value;
 
-  const handleMouseMove = event => {
+  const handleMouseMove = (event) => {
     setPosition({ x: event.nativeEvent.offsetX, y: event.nativeEvent.offsetY });
   };
 
   const handleClick = () => {
     if (mode !== MODE_TYPE.INSERT) return null;
-    const points = getPoints(position.x, position.y)
+    const points = getPoints(position.x, position.y);
 
     if (points === POINTS_TYPE.INVALID) {
       alert('Position is invalid');
@@ -39,27 +39,23 @@ function EditChart({ mode, shotType }) {
         position,
       },
     });
-  }
+  };
 
-  const handleCourtChange = court => courtDispatch({
-    type: 'SELECT_COURT',
-    court: Object.values(courtPositions)[court].id,
-  });
+  const handleCourtChange = (court) =>
+    courtDispatch({
+      type: 'SELECT_COURT',
+      court: Object.values(courtPositions)[court].id,
+    });
 
   return (
     <Box ml="auto" onChange={handleCourtChange}>
       <CourtTabs />
-      <Box
-        className="App-logo-wrapper"
-        onClick={handleClick}
-        onMouseMove={handleMouseMove}
-      >
+      <Box className="App-logo-wrapper" onClick={handleClick} onMouseMove={handleMouseMove}>
         <Box pointerEvents="none" position="absolute" p={8} right={-2} bottom={0} fontSize={20}>
           <FieldGoal shotPositions={currentShotPositions} />
         </Box>
         <ShotPositions mode={mode} shotPositions={currentShotPositions} />
-        {
-          mode === MODE_TYPE.INSERT &&
+        {mode === MODE_TYPE.INSERT && (
           <Text
             as="span"
             color={shotType === SHOT_TYPE.MADE ? '#f00' : '#00f'}
@@ -70,15 +66,15 @@ function EditChart({ mode, shotType }) {
           >
             {shotType}
           </Text>
-        }
+        )}
       </Box>
     </Box>
-  )
+  );
 }
 
 EditChart.propTypes = {
   mode: PropTypes.string.isRequired,
   shotType: PropTypes.string.isRequired,
-}
+};
 
 export default EditChart;

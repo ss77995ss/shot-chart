@@ -17,7 +17,9 @@ function SaveDataModal() {
 
   return (
     <>
-      <Button mt={4} mr={2} variantColor="blue" onClick={onOpen}>儲存分佈圖</Button>
+      <Button mt={4} mr={2} variantColor="blue" onClick={onOpen}>
+        儲存分佈圖
+      </Button>
       <Modal h="100%" isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent color="black">
@@ -32,7 +34,7 @@ function SaveDataModal() {
         </ModalContent>
       </Modal>
     </>
-  )
+  );
 }
 
 export default SaveDataModal;

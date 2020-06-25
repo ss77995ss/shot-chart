@@ -8,9 +8,18 @@ function SaveSlots({ action, onClose }) {
 
   return (
     <Stack spacing={2}>
-      {savedData.map((slot, index) => <SaveSlot key={`slot-${index}`} savedData={savedData} slot={slot} index={index} action={action} onClose={onClose} />)}
+      {savedData.map((slot, index) => (
+        <SaveSlot
+          key={`slot-${index}`}
+          savedData={savedData}
+          slot={slot}
+          index={index}
+          action={action}
+          onClose={onClose}
+        />
+      ))}
     </Stack>
-  )
+  );
 }
 
 export default SaveSlots;

@@ -3,7 +3,7 @@ import { Box, Heading, Text } from '@chakra-ui/core';
 import { update } from 'ramda';
 import { SAVE_DATA_VERSION } from '../../constants/base';
 import { useCourtState, useCourtDispatch } from '../../hooks/court';
-import { useCourtPositionsState, useCourtPositionsDispatch} from '../../hooks/courtPositions';
+import { useCourtPositionsState, useCourtPositionsDispatch } from '../../hooks/courtPositions';
 
 function SaveSlot({ savedData, slot, index, action, onClose, ...rest }) {
   const [isHover, setIsHover] = React.useState(false);
@@ -28,7 +28,7 @@ function SaveSlot({ savedData, slot, index, action, onClose, ...rest }) {
     courtDispatch({ type: 'LOAD_COURT', court: slot.court });
     courtPositionsDispatch({ type: 'LOAD_COURT_POSITIONS', courtPositions: slot.courtPositions });
     onClose();
-  }
+  };
 
   return (
     <Box
@@ -43,7 +43,9 @@ function SaveSlot({ savedData, slot, index, action, onClose, ...rest }) {
       onClick={action === 'save' ? handleSave : handleLoad}
     >
       <Heading fontSize="md">{`SaveSlot - ${index + 1}: `}</Heading>
-      <Text overflow="hidden" textOverflow="ellipsis">{slot.savedName}</Text>
+      <Text overflow="hidden" textOverflow="ellipsis">
+        {slot.savedName}
+      </Text>
       <Text>{slot.date}</Text>
     </Box>
   );

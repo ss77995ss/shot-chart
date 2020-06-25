@@ -19,16 +19,16 @@ function EditMode() {
   const courtPositions = useCourtPositionsState();
   const courtPositionsDispatch = useCourtPositionsDispatch();
 
-  const handleSwitchShotType = event => {
+  const handleSwitchShotType = (event) => {
     console.log(`Change shot type! ${event.target.value}`);
     setMode(MODE_TYPE.INSERT);
     setShotType(event.target.value);
   };
 
-  const handleSwitchModeType = event => {
+  const handleSwitchModeType = (event) => {
     console.log(`Change mode type! ${event.target.value}`);
     setMode(event.target.value);
-  }
+  };
 
   const handleUndo = () => {
     const target = courtPositions[currentCourt].value;
@@ -40,7 +40,7 @@ function EditMode() {
       currentCourt,
       selectedPoistionIndex: target.length - 1,
     });
-  }
+  };
 
   const handleReset = () => {
     courtDispatch({
@@ -49,22 +49,23 @@ function EditMode() {
     courtPositionsDispatch({
       type: 'RESET',
     });
-  }
+  };
 
   return (
     <Flex>
-      <EditChart
-        mode={mode}
-        shotType={shotType}
-      />
+      <EditChart mode={mode} shotType={shotType} />
       <Box mx="auto" mt="40px" w={300}>
         <PlayerInfoModal />
         <Text my="16px">{`現在的編輯模式: ${mode}`}</Text>
         <ShotTypeSelector onClick={handleSwitchShotType} />
         <ModeTypeSelector onClick={handleSwitchModeType} />
         <CourtNameForm key={`court-name-form-${currentCourt}`} id={currentCourt} />
-        <Button mt={4} mr={2} variantColor="blue" onClick={handleUndo}>上一步</Button>
-        <Button mt={4} mr={2} variantColor="blue" onClick={handleReset}>重設</Button>
+        <Button mt={4} mr={2} variantColor="blue" onClick={handleUndo}>
+          上一步
+        </Button>
+        <Button mt={4} mr={2} variantColor="blue" onClick={handleReset}>
+          重設
+        </Button>
         <Box>
           <SaveDataModal />
           <LoadDataModal />

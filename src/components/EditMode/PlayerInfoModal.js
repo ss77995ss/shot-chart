@@ -17,7 +17,7 @@ import {
   Select,
   useDisclosure,
 } from '@chakra-ui/core';
-import { PLAYER_POSITION } from '../../constants/base'
+import { PLAYER_POSITION } from '../../constants/base';
 import { useCourtState, useCourtDispatch } from '../../hooks/court';
 
 function PlayerNameModal() {
@@ -25,18 +25,20 @@ function PlayerNameModal() {
   const { playerInfo } = useCourtState();
   const courtDispatch = useCourtDispatch();
   const { register, handleSubmit } = useForm();
-  const onSubmit = playerInfo => {
+  const onSubmit = (playerInfo) => {
     courtDispatch({
       type: 'EDIT_PLAYER_INFO',
       playerInfo,
     });
     onClose();
-  }
+  };
   const { team, name, number, position, hand, gameCounts } = playerInfo;
 
   return (
     <>
-      <Button variantColor="blue" onClick={onOpen}>修改球員資料</Button>
+      <Button variantColor="blue" onClick={onOpen}>
+        修改球員資料
+      </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent color="black">
@@ -54,26 +56,28 @@ function PlayerNameModal() {
                   <Input ref={register} name="number" defaultValue={number} />
                   <FormLabel htmlFor="position">球員位置</FormLabel>
                   <Select name="position" ref={register} defaultValue={position}>
-                    {
-                      Object.values(PLAYER_POSITION).map((position, index) => (
-                        <option key={`position-${index}`} value={position}>{position}</option>
-                      ))
-                    }
+                    {Object.values(PLAYER_POSITION).map((position, index) => (
+                      <option key={`position-${index}`} value={position}>
+                        {position}
+                      </option>
+                    ))}
                   </Select>
                   <FormLabel htmlFor="hand">慣用手</FormLabel>
                   <RadioGroup name="hand" defaultValue={hand} isInline>
-                    <Radio ref={register} value="無">無</Radio>
-                    <Radio ref={register} value="右手">右手</Radio>
-                    <Radio ref={register} value="左手">左手</Radio>
+                    <Radio ref={register} value="無">
+                      無
+                    </Radio>
+                    <Radio ref={register} value="右手">
+                      右手
+                    </Radio>
+                    <Radio ref={register} value="左手">
+                      左手
+                    </Radio>
                   </RadioGroup>
                   <FormLabel htmlFor="games">場數</FormLabel>
                   <Input ref={register} name="gameCounts" defaultValue={gameCounts} />
                 </FormControl>
-                <Button
-                  my={3}
-                  type="submit"
-                  variantColor="blue"
-                >
+                <Button my={3} type="submit" variantColor="blue">
                   儲存
                 </Button>
               </Box>
@@ -85,4 +89,4 @@ function PlayerNameModal() {
   );
 }
 
-export default PlayerNameModal
+export default PlayerNameModal;

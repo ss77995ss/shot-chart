@@ -4,15 +4,12 @@ import { Box, Text } from '@chakra-ui/core';
 import { SHOT_TYPE, POINTS_TYPE } from '../constants/base';
 
 function FieldGoal({ shotPositions }) {
-  const shotMades = shotPositions.filter(shot => shot.type === SHOT_TYPE.MADE).length;
+  const shotMades = shotPositions.filter((shot) => shot.type === SHOT_TYPE.MADE).length;
   const shotTakes = shotPositions.length;
   const shootingPercentage = shotTakes !== 0 ? (shotMades * 100) / shotTakes : 0;
-  const threeMades = shotPositions.filter(
-    shot => (shot.type === SHOT_TYPE.MADE) && (shot.points === POINTS_TYPE.THREE)
-  ).length;
-  const threeTakes = shotPositions.filter(
-    shot => shot.points === POINTS_TYPE.THREE
-  ).length;
+  const threeMades = shotPositions.filter((shot) => shot.type === SHOT_TYPE.MADE && shot.points === POINTS_TYPE.THREE)
+    .length;
+  const threeTakes = shotPositions.filter((shot) => shot.points === POINTS_TYPE.THREE).length;
   const threePointPercentage = threeTakes !== 0 ? (threeMades * 100) / threeTakes : 0;
 
   return (
@@ -26,10 +23,12 @@ function FieldGoal({ shotPositions }) {
 }
 
 FieldGoal.propTypes = {
-  shotPositions: PropTypes.arrayOf(PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number,
-  })).isRequired,
-}
+  shotPositions: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.number,
+      y: PropTypes.number,
+    }),
+  ).isRequired,
+};
 
 export default FieldGoal;

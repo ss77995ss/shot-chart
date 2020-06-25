@@ -30,8 +30,8 @@ function courtPositionsReducer(state, action) {
         ...state,
         [currentCourt]: {
           ...state[currentCourt],
-          value: remove(selectedPoistionIndex, 1, state[currentCourt].value)
-        }
+          value: remove(selectedPoistionIndex, 1, state[currentCourt].value),
+        },
       };
     }
     case 'EDIT_COURT_NAME': {
@@ -39,18 +39,18 @@ function courtPositionsReducer(state, action) {
 
       return {
         ...state,
-        [action.id]: newCourt
+        [action.id]: newCourt,
       };
     }
     case 'ADD_SHOT': {
-      const { currentCourt, positions } = action
+      const { currentCourt, positions } = action;
 
       return {
         ...state,
         [currentCourt]: {
           ...state[currentCourt],
           value: state[currentCourt].value.concat(positions),
-        }
+        },
       };
     }
     case 'UPDATE_SHOT': {
@@ -60,14 +60,14 @@ function courtPositionsReducer(state, action) {
         ...state,
         [currentCourt]: {
           ...state[currentCourt],
-          value: update(selectedPoistionIndex, newShot, state[currentCourt].value)
-        }
+          value: update(selectedPoistionIndex, newShot, state[currentCourt].value),
+        },
       };
     }
     case 'LOAD_COURT_POSITIONS': {
       return {
         ...action.courtPositions,
-      }
+      };
     }
     case 'RESET': {
       return DEFAULT_COURT_POSITIONS;
@@ -79,26 +79,22 @@ function courtPositionsReducer(state, action) {
 }
 
 function CourtPositionsProvider({ children }) {
-  const [state, dispatch] = React.useReducer(courtPositionsReducer, DEFAULT_COURT_POSITIONS)
+  const [state, dispatch] = React.useReducer(courtPositionsReducer, DEFAULT_COURT_POSITIONS);
   return (
     <CourtPositionsStateContext.Provider value={state}>
-      <CourtPositionsDispatchContext.Provider value={dispatch}>
-        {children}
-      </CourtPositionsDispatchContext.Provider>
+      <CourtPositionsDispatchContext.Provider value={dispatch}>{children}</CourtPositionsDispatchContext.Provider>
     </CourtPositionsStateContext.Provider>
   );
 }
 
 CourtPositionsProvider.propTypes = {
   children: PropTypes.element.isRequired,
-}
+};
 
 function useCourtPositionsState() {
   const context = React.useContext(CourtPositionsStateContext);
   if (context === undefined) {
-    throw new Error(
-      'useCourtPositionsState must be used within a CourtPositionsProvider'
-    );
+    throw new Error('useCourtPositionsState must be used within a CourtPositionsProvider');
   }
   return context;
 }
@@ -106,9 +102,7 @@ function useCourtPositionsState() {
 function useCourtPositionsDispatch() {
   const context = React.useContext(CourtPositionsDispatchContext);
   if (context === undefined) {
-    throw new Error(
-      'useCourtPositionsDispatch must be used within a CourtPositionsProvider'
-    );
+    throw new Error('useCourtPositionsDispatch must be used within a CourtPositionsProvider');
   }
   return context;
 }

@@ -7,7 +7,7 @@ import { getPoints } from '../utils/common';
 
 function DraggableShot({ currentCourt, index, shot }) {
   const { type, position } = shot;
-  const [ activeDrag, setActiveDrag ] = React.useState(false);
+  const [activeDrag, setActiveDrag] = React.useState(false);
   const courtPositionsDispatch = useCourtPositionsDispatch();
   const style = {
     color: shot.type === SHOT_TYPE.MADE ? 'red' : 'blue',
@@ -39,15 +39,20 @@ function DraggableShot({ currentCourt, index, shot }) {
         points,
         position,
       },
-    })
+    });
     setActiveDrag(false);
-  }
+  };
 
   return (
-    <Draggable position={{ x: position.x - 8, y: position.y - 20 }} bounds="parent" onStart={handleStart} onStop={handleStop}>
+    <Draggable
+      position={{ x: position.x - 8, y: position.y - 20 }}
+      bounds="parent"
+      onStart={handleStart}
+      onStop={handleStop}
+    >
       <span style={style}>{type}</span>
     </Draggable>
-  )
+  );
 }
 
 DraggableShot.propTypes = {
@@ -58,6 +63,6 @@ DraggableShot.propTypes = {
     x: PropTypes.number,
     y: PropTypes.number,
   }).isRequired,
-}
+};
 
-export default DraggableShot
+export default DraggableShot;

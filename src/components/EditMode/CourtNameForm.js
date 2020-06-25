@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import {
-  Button,
-  Input,
-  Flex,
-  FormControl,
-  FormLabel,
-} from '@chakra-ui/core';
+import { Button, Input, Flex, FormControl, FormLabel } from '@chakra-ui/core';
 import { useCourtPositionsDispatch } from '../../hooks/courtPositions';
 
 function CourtNameForm({ id }) {
@@ -19,7 +13,7 @@ function CourtNameForm({ id }) {
       id,
       court,
     });
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -28,11 +22,7 @@ function CourtNameForm({ id }) {
           <FormLabel htmlFor="court">修改分佈圖名稱</FormLabel>
           <Input ref={register} name="court" color="black" defaultValue={id} />
         </FormControl>
-        <Button
-          ml={3}
-          type="submit"
-          variantColor="blue"
-        >
+        <Button ml={3} type="submit" variantColor="blue">
           儲存
         </Button>
       </Flex>
@@ -42,6 +32,6 @@ function CourtNameForm({ id }) {
 
 CourtNameForm.propTypes = {
   id: PropTypes.string.isRequired,
-}
+};
 
-export default CourtNameForm
+export default CourtNameForm;

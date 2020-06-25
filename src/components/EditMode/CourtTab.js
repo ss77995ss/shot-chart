@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Box,
-  Flex,
-  IconButton,
-} from '@chakra-ui/core';
+import { Box, Flex, IconButton } from '@chakra-ui/core';
 import { useCourtState, useCourtDispatch } from '../../hooks/court';
 import { useCourtPositionsState, useCourtPositionsDispatch } from '../../hooks/courtPositions';
 
@@ -14,15 +10,15 @@ function CourtTab({ id, name }) {
   const courtDispatch = useCourtDispatch();
   const courtPositionsDispatch = useCourtPositionsDispatch();
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     event.preventDefault();
     courtDispatch({
       type: 'SELECT_COURT',
       court: id,
     });
-  }
+  };
 
-  const handleDelete = event => {
+  const handleDelete = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
@@ -32,7 +28,7 @@ function CourtTab({ id, name }) {
     }
 
     if (id === currentCourt) {
-      return alert('Can not delete selected court')
+      return alert('Can not delete selected court');
     }
 
     courtPositionsDispatch({
@@ -48,28 +44,28 @@ function CourtTab({ id, name }) {
     console.log(`${id} is been deleted`);
   };
 
-  const backgroundColor = currentCourt === id ? '#3182ce' : null
+  const backgroundColor = currentCourt === id ? '#3182ce' : null;
 
   return (
-      <Flex alignItems="center" bg={backgroundColor} onClick={handleClick}>
-        <Box ml={2} mr={4}>
-          {name}
-        </Box>
-        <IconButton
-          mr={1}
-          icon="small-close"
-          size="xs"
-          variant="ghost"
-          isRound
-          onClick={handleDelete}
-          _hover={{ bg: "blue.700" }}
-        />
-      </Flex>
-  )
+    <Flex alignItems="center" bg={backgroundColor} onClick={handleClick}>
+      <Box ml={2} mr={4}>
+        {name}
+      </Box>
+      <IconButton
+        mr={1}
+        icon="small-close"
+        size="xs"
+        variant="ghost"
+        isRound
+        onClick={handleDelete}
+        _hover={{ bg: 'blue.700' }}
+      />
+    </Flex>
+  );
 }
 
 CourtTab.propTypes = {
   name: PropTypes.string.isRequired,
-}
+};
 
-export default CourtTab
+export default CourtTab;
