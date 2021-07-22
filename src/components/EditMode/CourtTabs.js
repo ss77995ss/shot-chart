@@ -5,7 +5,7 @@ import CourtTab from './CourtTab';
 
 const renderTabs = (courtPositions) =>
   Object.values(courtPositions).map((court) => (
-    <CourtTab key={`court-tab-#${court.id}`} id={court.id} name={court.name} />
+    <CourtTab key={`court-tab-#${court.id}`} id={`${court.id}`} name={`${court.name}`} />
   ));
 
 function CourtTabs() {

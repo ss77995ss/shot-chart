@@ -5,7 +5,7 @@ import { useCourtPositionsState } from '../../hooks/courtPositions';
 
 const renderCheckboxes = (courtPositions) => {
   return Object.values(courtPositions).map((court, index) => (
-    <Checkbox key={`checkbox-${court.id}`} value={court.id}>
+    <Checkbox key={`checkbox-${court.id}`} value={`${court.id}`}>
       {court.name}
     </Checkbox>
   ));
