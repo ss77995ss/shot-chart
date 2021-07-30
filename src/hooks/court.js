@@ -32,7 +32,7 @@ function courtReducer(state, action) {
     case 'ADD_COURT': {
       return {
         ...state,
-        newCourtId: state.newCourtId + 1,
+        newCourtId: `${parseInt(state.newCourtId, 10) + 1}`,
       };
     }
     case 'DELETE_COURT': {

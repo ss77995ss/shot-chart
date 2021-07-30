@@ -1,5 +1,6 @@
 import React from 'react';
 import { Flex, IconButton } from '@chakra-ui/core';
+import { useCourtState, useCourtDispatch } from '../../hooks/court';
 import { useCourtPositionsState, useCourtPositionsDispatch } from '../../hooks/courtPositions';
 import CourtTab from './CourtTab';
 
@@ -9,13 +10,14 @@ const renderTabs = (courtPositions) =>
   ));
 
 function CourtTabs() {
-  const [newCourtId, setCourtId] = React.useState(3);
+  const { newCourtId } = useCourtState();
+  const courtDispatch = useCourtDispatch();
   const courtPositions = useCourtPositionsState();
   const courtPositionsDispatch = useCourtPositionsDispatch();
 
   const handleAddCourt = () => {
     courtPositionsDispatch({ type: 'ADD_COURT', id: newCourtId });
-    setCourtId((prev) => prev + 1);
+    courtDispatch({ type: 'ADD_COURT' });
   };
 
   return (
