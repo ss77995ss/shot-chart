@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useCourtState } from '../hooks/court';
 import { useCourtPositionsDispatch } from '../hooks/courtPositions';
-import { SHOT_TYPE, MODE_TYPE } from '../constants/base';
+import { shotTypes, MODE_TYPE } from '../constants/base';
 import DraggableShot from './DraggableShot';
 
 function ShotPositions({ mode, shotPositions }) {
@@ -19,7 +19,7 @@ function ShotPositions({ mode, shotPositions }) {
 
   return shotPositions.map((shot, index) => {
     const style = {
-      color: shot.type === SHOT_TYPE.MADE ? 'red' : 'blue',
+      color: shotTypes[shot.type].color,
       fontSize: '20px',
       position: 'absolute',
       transform: `translate(${shot.position.x - 8}px, ${shot.position.y - 20}px)`,

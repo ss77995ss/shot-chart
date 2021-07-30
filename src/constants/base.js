@@ -3,6 +3,29 @@ export const SHOT_TYPE = {
   MISS: 'x',
 };
 
+export const shotTypes = {
+  o: {
+    value: 'o',
+    name: '進',
+    color: 'red',
+  },
+  x: {
+    value: 'x',
+    name: '不進',
+    color: 'blue',
+  },
+  F: {
+    value: 'F',
+    name: '犯規',
+    color: 'green',
+  },
+  T: {
+    value: 'T',
+    name: '失誤',
+    color: 'gray',
+  },
+};
+
 export const MODE_TYPE = {
   INSERT: '加入',
   DELETE: '刪除',

@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button, Flex, Text } from '@chakra-ui/core';
 import { useCourtState, useCourtDispatch } from '../../hooks/court';
 import { useCourtPositionsState, useCourtPositionsDispatch } from '../../hooks/courtPositions';
-import { SHOT_TYPE, MODE_TYPE } from '../../constants/base';
+import { shotTypes, MODE_TYPE } from '../../constants/base';
 import EditChart from './EditChart';
 import CourtNameForm from './CourtNameForm';
 import PlayerInfoModal from './PlayerInfoModal';
@@ -13,7 +13,7 @@ import LoadDataModal from './LoadDataModal';
 
 function EditMode() {
   const [mode, setMode] = React.useState(MODE_TYPE.INSERT);
-  const [shotType, setShotType] = React.useState(SHOT_TYPE.MADE);
+  const [shotType, setShotType] = React.useState(shotTypes['o'].value);
   const { currentCourt } = useCourtState();
   const courtDispatch = useCourtDispatch();
   const courtPositions = useCourtPositionsState();
@@ -21,8 +21,9 @@ function EditMode() {
 
   const handleSwitchShotType = (event) => {
     console.log(`Change shot type! ${event.target.value}`);
-    setMode(MODE_TYPE.INSERT);
+    if (!event.target.value) return alert('Undefined!');
     setShotType(event.target.value);
+    setMode(MODE_TYPE.INSERT);
   };
 
   const handleSwitchModeType = (event) => {

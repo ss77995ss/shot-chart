@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
 import { useCourtPositionsDispatch } from '../hooks/courtPositions';
-import { SHOT_TYPE, POINTS_TYPE } from '../constants/base';
+import { shotTypes, POINTS_TYPE } from '../constants/base';
 import { getPoints } from '../utils/common';
 
 function DraggableShot({ currentCourt, index, shot }) {
@@ -10,7 +10,7 @@ function DraggableShot({ currentCourt, index, shot }) {
   const [activeDrag, setActiveDrag] = React.useState(false);
   const courtPositionsDispatch = useCourtPositionsDispatch();
   const style = {
-    color: shot.type === SHOT_TYPE.MADE ? 'red' : 'blue',
+    color: shotTypes[shot.type].color,
     fontSize: '20px',
     position: 'absolute',
     zIndex: index,
