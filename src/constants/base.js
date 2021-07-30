@@ -28,7 +28,7 @@ export const PLAYER_POSITION = {
 
 export const DEFAULT_COURT = {
   selectedPosition: null,
-  newCourtId: 3,
+  newCourtId: '3',
   currentCourt: '1',
   selectedCourts: ['1'],
   playerInfo: {
