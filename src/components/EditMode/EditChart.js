@@ -4,7 +4,7 @@ import { Box, Text } from '@chakra-ui/core';
 import { useCourtState, useCourtDispatch } from '../../hooks/court';
 import { useCourtPositionsState, useCourtPositionsDispatch } from '../../hooks/courtPositions';
 import { getPoints } from '../../utils/common';
-import { SHOT_TYPE, MODE_TYPE, POINTS_TYPE } from '../../constants/base';
+import { shotTypes, MODE_TYPE, POINTS_TYPE } from '../../constants/base';
 import CourtTabs from './CourtTabs';
 import FieldGoal from '../FieldGoal';
 import ShotPositions from '../ShotPositions';
@@ -58,7 +58,7 @@ function EditChart({ mode, shotType }) {
         {mode === MODE_TYPE.INSERT && (
           <Text
             as="span"
-            color={shotType === SHOT_TYPE.MADE ? '#f00' : '#00f'}
+            color={`${shotTypes[shotType].color}.500`}
             fontSize={20}
             position="absolute"
             transform={`translate(${position.x - 8}px, ${position.y - 20}px)`}

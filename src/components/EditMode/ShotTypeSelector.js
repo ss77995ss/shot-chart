@@ -1,31 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Button } from '@chakra-ui/core';
-import { SHOT_TYPE } from '../../constants/base';
+import { Box, Button, Text } from '@chakra-ui/core';
+import { shotTypes } from '../../constants/base';
 
 function ShotTypeSelector({ onClick }) {
   return (
     <Box>
-      <Button
-        key={`shop-type-selector-${SHOT_TYPE.MADE}}`}
-        variantColor="blue"
-        mr={2}
-        my={2}
-        value={SHOT_TYPE.MADE}
-        onClick={onClick}
-      >
-        進
-      </Button>
-      <Button
-        key={`shop-type-selector-${SHOT_TYPE.MISS}}`}
-        variantColor="blue"
-        mr={2}
-        my={2}
-        value={SHOT_TYPE.MISS}
-        onClick={onClick}
-      >
-        不進
-      </Button>
+      {Object.values(shotTypes).map((type) => (
+        <Button
+          key={`shop-type-selector-${type.value}}`}
+          variantColor="blue"
+          variant="outline"
+          mr={2}
+          my={2}
+          w={24}
+          value={type.value}
+          onClick={onClick}
+        >
+          <Text pointerEvents="none" mr={2}>
+            {type.name}
+          </Text>
+          <Text pointerEvents="none" color={`${type.color}.500`}>
+            {type.value.toUpperCase()}
+          </Text>
+        </Button>
+      ))}
     </Box>
   );
 }
