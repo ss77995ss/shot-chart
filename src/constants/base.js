@@ -6,30 +6,30 @@ export const SHOT_TYPE = {
 export const shotTypes = {
   o: {
     value: 'o',
-    name: '進',
+    name: 'made',
     color: 'red',
   },
   x: {
     value: 'x',
-    name: '不進',
+    name: 'miss',
     color: 'blue',
   },
   F: {
     value: 'F',
-    name: '犯規',
+    name: 'foul',
     color: 'green',
   },
   T: {
     value: 'T',
-    name: '失誤',
+    name: 'turnover',
     color: 'gray',
   },
 };
 
 export const MODE_TYPE = {
-  INSERT: '加入',
-  DELETE: '刪除',
-  DRAG: '拖曳',
+  INSERT: 'insert',
+  DELETE: 'delete',
+  DRAG: 'drag',
 };
 
 export const POINTS_TYPE = {
@@ -55,11 +55,11 @@ export const DEFAULT_COURT = {
   currentCourt: '1',
   selectedCourts: ['1'],
   playerInfo: {
-    team: '隊伍',
-    name: '球員',
+    team: 'Team',
+    name: 'Player',
     number: '1',
     position: '',
-    hand: '無',
+    hand: 'none',
     gameCounts: '1',
   },
 };

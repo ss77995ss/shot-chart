@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Button,
   Modal,
@@ -13,23 +14,24 @@ import {
 import SaveSlots from './SaveSlots';
 
 function LoadDataModal() {
+  const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
       <Button mt={4} mr={2} variantColor="blue" onClick={onOpen}>
-        讀取分佈圖
+        {t('loadShotChart')}
       </Button>
       <Modal h="100%" isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent color="black">
-          <ModalHeader>選取讀取位置</ModalHeader>
+          <ModalHeader>{t('selectLoadSlot')}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <SaveSlots action="load" onClose={onClose} />
           </ModalBody>
           <ModalFooter>
-            <Button onClick={onClose}>關閉</Button>
+            <Button onClick={onClose}>{t('close')}</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

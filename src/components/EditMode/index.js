@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Box, Button, Flex, Text } from '@chakra-ui/core';
 import { useCourtState, useCourtDispatch } from '../../hooks/court';
 import { useCourtPositionsState, useCourtPositionsDispatch } from '../../hooks/courtPositions';
@@ -12,6 +13,7 @@ import SaveDataModal from './SaveDataModal';
 import LoadDataModal from './LoadDataModal';
 
 function EditMode() {
+  const { t } = useTranslation();
   const [mode, setMode] = React.useState(MODE_TYPE.INSERT);
   const [shotType, setShotType] = React.useState(shotTypes['o'].value);
   const { currentCourt } = useCourtState();
@@ -57,15 +59,15 @@ function EditMode() {
       <EditChart mode={mode} shotType={shotType} />
       <Box mx="auto" mt="40px" w={300}>
         <PlayerInfoModal />
-        <Text my="16px">{`現在的編輯模式: ${mode}`}</Text>
+        <Text my="16px">{`${t('currentMode')} ${t(mode)}`}</Text>
         <ShotTypeSelector onClick={handleSwitchShotType} />
         <ModeTypeSelector onClick={handleSwitchModeType} />
         <CourtNameForm key={`court-name-form-${currentCourt}`} id={currentCourt} />
         <Button mt={4} mr={2} variantColor="blue" onClick={handleUndo}>
-          上一步
+          {t('previousStep')}
         </Button>
         <Button mt={4} mr={2} variantColor="blue" onClick={handleReset}>
-          重設
+          {t('reset')}
         </Button>
         <Box>
           <SaveDataModal />

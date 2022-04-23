@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { Button, Input, Flex, FormControl, FormLabel } from '@chakra-ui/core';
 import { useCourtPositionsDispatch } from '../../hooks/courtPositions';
@@ -7,6 +8,7 @@ import { useCourtPositionsDispatch } from '../../hooks/courtPositions';
 function CourtNameForm({ id }) {
   const courtPositionsDispatch = useCourtPositionsDispatch();
   const { register, handleSubmit } = useForm();
+  const { t } = useTranslation();
   const onSubmit = ({ court }) => {
     courtPositionsDispatch({
       type: 'EDIT_COURT_NAME',
@@ -19,11 +21,11 @@ function CourtNameForm({ id }) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex mt={5} alignItems="flex-end">
         <FormControl>
-          <FormLabel htmlFor="court">修改分佈圖名稱</FormLabel>
+          <FormLabel htmlFor="court">{t('editShotChartName')}</FormLabel>
           <Input ref={register} name="court" color="black" defaultValue={id} />
         </FormControl>
         <Button ml={3} type="submit" variantColor="blue">
-          儲存
+          {t('save')}
         </Button>
       </Flex>
     </form>
