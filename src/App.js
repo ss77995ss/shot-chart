@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CSSReset, theme, ThemeProvider, Tabs, TabList, Tab, TabPanels, TabPanel } from '@chakra-ui/core';
 import { CourtProvider } from './hooks/court';
 import { CourtPositionsProvider } from './hooks/courtPositions';
@@ -7,6 +8,8 @@ import ViewMode from './components/ViewMode';
 import './App.css';
 
 function App() {
+  const { t } = useTranslation();
+
   return (
     <CourtProvider>
       <CourtPositionsProvider>
@@ -14,8 +17,8 @@ function App() {
           <CSSReset />
           <Tabs variant="soft-rounded" align="center">
             <TabList>
-              <Tab m={2}>編輯</Tab>
-              <Tab m={2}>檢視</Tab>
+              <Tab m={2}>{t('edit')}</Tab>
+              <Tab m={2}>{t('view')}</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>

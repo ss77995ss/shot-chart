@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { Box, Button, Text } from '@chakra-ui/core';
 import { shotTypes } from '../../constants/base';
 
 function ShotTypeSelector({ onClick }) {
+  const { t } = useTranslation();
+
   return (
     <Box>
       {Object.values(shotTypes).map((type) => (
@@ -18,7 +21,7 @@ function ShotTypeSelector({ onClick }) {
           onClick={onClick}
         >
           <Text pointerEvents="none" mr={2}>
-            {type.name}
+            {t(type.name)}
           </Text>
           <Text pointerEvents="none" color={`${type.color}.500`}>
             {type.value.toUpperCase()}

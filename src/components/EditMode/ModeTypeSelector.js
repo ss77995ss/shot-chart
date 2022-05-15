@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { Box, Button } from '@chakra-ui/core';
 import { MODE_TYPE } from '../../constants/base';
 
 function ModeTypeSelector({ onClick }) {
+  const { t } = useTranslation();
+
   return (
     <Box>
       {Object.entries(MODE_TYPE)
@@ -17,7 +20,7 @@ function ModeTypeSelector({ onClick }) {
             value={entry[1]}
             onClick={onClick}
           >
-            {entry[1]}
+            {t(entry[1])}
           </Button>
         ))}
     </Box>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import {
   Button,
   Input,
@@ -21,6 +22,7 @@ import { PLAYER_POSITION } from '../../constants/base';
 import { useCourtState, useCourtDispatch } from '../../hooks/court';
 
 function PlayerNameModal() {
+  const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { playerInfo } = useCourtState();
   const courtDispatch = useCourtDispatch();
@@ -37,24 +39,24 @@ function PlayerNameModal() {
   return (
     <>
       <Button variantColor="blue" onClick={onOpen}>
-        修改球員資料
+        {t('editPlayerData')}
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent color="black">
-          <ModalHeader>修改球員資料</ModalHeader>
+          <ModalHeader>{t('editPlayerData')}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Box alignItems="flex-end">
                 <FormControl>
-                  <FormLabel htmlFor="team">隊伍名稱</FormLabel>
+                  <FormLabel htmlFor="team">{t('teamName')}</FormLabel>
                   <Input ref={register} name="team" defaultValue={team} />
-                  <FormLabel htmlFor="name">球員名稱</FormLabel>
+                  <FormLabel htmlFor="name">{t('playerName')}</FormLabel>
                   <Input ref={register} name="name" defaultValue={name} />
-                  <FormLabel htmlFor="number">球員號碼</FormLabel>
+                  <FormLabel htmlFor="number">{t('playerNo')}</FormLabel>
                   <Input ref={register} name="number" defaultValue={number} />
-                  <FormLabel htmlFor="position">球員位置</FormLabel>
+                  <FormLabel htmlFor="position">{t('playerPosition')}</FormLabel>
                   <Select name="position" ref={register} defaultValue={position}>
                     {Object.values(PLAYER_POSITION).map((position, index) => (
                       <option key={`position-${index}`} value={position}>
@@ -62,23 +64,23 @@ function PlayerNameModal() {
                       </option>
                     ))}
                   </Select>
-                  <FormLabel htmlFor="hand">慣用手</FormLabel>
+                  <FormLabel htmlFor="hand">{t('dominantHand')}</FormLabel>
                   <RadioGroup name="hand" defaultValue={hand} isInline>
-                    <Radio ref={register} value="無">
-                      無
+                    <Radio ref={register} value="none">
+                      {t('none')}
                     </Radio>
-                    <Radio ref={register} value="右手">
-                      右手
+                    <Radio ref={register} value="rightHand">
+                      {t('rightHand')}
                     </Radio>
-                    <Radio ref={register} value="左手">
-                      左手
+                    <Radio ref={register} value="leftHand">
+                      {t('leftHand')}
                     </Radio>
                   </RadioGroup>
-                  <FormLabel htmlFor="games">場數</FormLabel>
+                  <FormLabel htmlFor="games">{t('games')}</FormLabel>
                   <Input ref={register} name="gameCounts" defaultValue={gameCounts} />
                 </FormControl>
                 <Button my={3} type="submit" variantColor="blue">
-                  儲存
+                  {t('save')}
                 </Button>
               </Box>
             </form>
